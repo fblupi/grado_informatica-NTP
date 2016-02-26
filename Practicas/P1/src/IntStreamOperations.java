@@ -1,5 +1,7 @@
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -151,9 +153,17 @@ public class IntStreamOperations {
                 .filter(value -> value % 2 == 0)    // Devuelve otro flujo de int
                 .sorted()                           // Devuelve otro flujo de int
                 .forEach(value -> System.out.printf("%d ", value));
+                //.collect(Collectors.toList())  ---> Devuelve un List<Integer> Es consumidora como forEach
         System.out.println();
     }
-
+/* No funciona pues necesitaría que valores fuese de tipo primitivo Integer
+    public List<Integer> obtenerConFiltrado() {
+        List<Integer> mayores50 = Arrays.stream(valores)
+                .filter(valor -> valor > 50)
+                .collect(Collectors.toList());
+        return mayores50;
+    }
+*/
     public static void main(String[] args) {
         IntStreamOperations objeto = new IntStreamOperations(100);
         objeto.mostrarValores();
