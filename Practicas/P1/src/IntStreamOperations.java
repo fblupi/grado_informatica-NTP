@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -25,7 +26,7 @@ public class IntStreamOperations {
         IntStream.of(valores)
                 .forEach(value -> System.out.printf("%d ", value));
         System.out.println();
-        // Una vez se ha utilizado el flujo este queda inutil
+        // Una vez se ha utilizado forEach sobre el flujo este queda inutil
 
         // Alternativa: IntStream.of(valores).forEach(System.out::println);
         // Bloque de sentencias: IntStream.of(valores).forEach(value -> { ... });
@@ -91,8 +92,70 @@ public class IntStreamOperations {
         return IntStream.of(valores).reduce(0, (x, y) -> x + y);
     }
 
+    public long obtenerSumaAlCuadrado() {
+        long suma = 0;
+        for (int i = 0; i < valores.length; i++) {
+            suma += (valores[i] * valores[i]);
+        }
+        return suma;
+    }
+
+    public long obtenerSumaAlCuadradoReduceExpresionesLambda() {
+        return IntStream.of(valores).reduce(0, (x, y) -> x + y * y);
+    }
+
+    public long obtenerSumaAlCuadradoReduceExpresionesLambdaConMap() {
+        return IntStream.of(valores).map(x -> x * x).sum();
+    }
+
+    public long obtenerProducto() {
+        long producto = 1;
+        for (int i = 0; i < valores.length; i++) {
+            producto *= valores[i];
+        }
+        return producto;
+    }
+
+    public long obtenerProductoFuncional() {
+        return IntStream.of(valores).reduce(1, (x, y) -> x * y);
+    }
+
+    public void ordenarPares() {
+        int[] pares = new int[valores.length];
+        int contadorPares = 0;
+        for (int i = 0; i < valores.length; i++) {
+            if (valores[i] % 2 == 0) {
+                pares[contadorPares] = valores[i];
+                contadorPares++;
+            }
+        }
+        Arrays.sort(pares, 0, contadorPares);
+
+        for (int i = 0; i < contadorPares; i++) {
+            System.out.printf("%d ", pares[i]);
+        }
+        System.out.println();
+    }
+
+    public void ordenarParesFuncional() {
+        IntStream.of(valores)
+                .filter(value -> value % 2 == 0)    // Devuelve otro flujo de int
+                .sorted()                           // Devuelve otro flujo de int
+                .forEach(value -> System.out.printf("%d ", value));
+        System.out.println();
+    }
+
+    public void ordenarParesMultiplicadosFuncional(int factor) {
+        IntStream.of(valores)
+                .map(x -> x * factor)
+                .filter(value -> value % 2 == 0)    // Devuelve otro flujo de int
+                .sorted()                           // Devuelve otro flujo de int
+                .forEach(value -> System.out.printf("%d ", value));
+        System.out.println();
+    }
+
     public static void main(String[] args) {
-        IntStreamOperations objeto = new IntStreamOperations(10000);
+        IntStreamOperations objeto = new IntStreamOperations(100);
         objeto.mostrarValores();
         objeto.mostrarValoresFuncional();
         System.out.println(objeto.contarValores());
@@ -104,6 +167,14 @@ public class IntStreamOperations {
         System.out.println(objeto.obtenerSuma());
         System.out.println(objeto.obtenerSumaFuncional());
         System.out.println(objeto.obtenerSumaReduceExpresionesLambda());
+        System.out.println(objeto.obtenerSumaAlCuadrado());
+        System.out.println(objeto.obtenerSumaAlCuadradoReduceExpresionesLambda());
+        System.out.println(objeto.obtenerSumaAlCuadradoReduceExpresionesLambdaConMap());
+        System.out.println(objeto.obtenerProducto()); // Desborda el tamaño de long
+        System.out.println(objeto.obtenerProductoFuncional()); // Desborda el tamaño de long
+        objeto.ordenarPares();
+        objeto.ordenarParesFuncional();
+        objeto.ordenarParesMultiplicadosFuncional(23);
     }
 }
 
