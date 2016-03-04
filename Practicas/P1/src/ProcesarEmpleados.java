@@ -1,7 +1,4 @@
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collector;
@@ -86,5 +83,18 @@ public class ProcesarEmpleados {
                     empleadosEnDepartamento.forEach(System.out::println);
                 }
         );
+
+        System.out.printf("%nCuenta empleados por departamentos:%n");
+        Map<String, Long> cuentaEmpleadosPorDepartamento =
+                lista.stream()
+                .collect(Collectors.groupingBy(Empleado::obtenerDepartamento,
+                        TreeMap::new, Collectors.counting()));
+
+        cuentaEmpleadosPorDepartamento.forEach(
+                (departamento, cuenta) -> System.out.printf(
+                        "%s tiene %d empleados%n", departamento, cuenta
+                )
+        );
+
     }
 }
