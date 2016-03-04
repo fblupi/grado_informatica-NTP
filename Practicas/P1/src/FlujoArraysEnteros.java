@@ -28,5 +28,10 @@ public class FlujoArraysEnteros {
                         .filter(valor -> valor > 4)
                         .sorted()
                         .collect(Collectors.toList()));
+
+        System.out.printf("Mayores a 4 ordenados sobre colección: %s%n",
+                mayores4.stream()
+                        .sorted()
+                        .collect(Collectors.toList()));
     }
 }
