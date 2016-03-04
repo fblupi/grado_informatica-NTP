@@ -1,8 +1,11 @@
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -53,7 +56,7 @@ public class ProcesarEmpleados {
         lista.stream()
                 .sorted(comparador)
                 .forEach(System.out::println);
-        
+
         System.out.printf("%nEmpleados en orden inverso Apellido Nombre:%n");
         lista.stream()
                 .sorted(comparador.reversed())
@@ -61,9 +64,27 @@ public class ProcesarEmpleados {
 
         System.out.printf("%nApellidos sin repeticiones y ordenados:%n");
         lista.stream()
-                .map(Empleado::obtenerPrimerApellido)
+                .map(Empleado::obtenerPrimerApellido) // aquí psaría el flujo a ser un flujo de String
                 .distinct()
                 .sorted()
                 .forEach(System.out::println);
+
+        System.out.printf("%nMuestra solo nombres:%n");
+        lista.stream()
+                .sorted(comparador)
+                .map(Empleado::obtenerNombre)
+                .forEach(System.out::println);
+
+        System.out.printf("%nEmpleados por departamentos:%n");
+        Map<String, List<Empleado>> agrupadoPorDepartamentos =
+                lista.stream()
+                .collect(Collectors.groupingBy(Empleado::obtenerDepartamento));
+
+        agrupadoPorDepartamentos.forEach(
+                (departamento, empleadosEnDepartamento) -> {
+                    System.out.println(departamento);
+                    empleadosEnDepartamento.forEach(System.out::println);
+                }
+        );
     }
 }
