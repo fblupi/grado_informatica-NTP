@@ -20,5 +20,11 @@ public class FlujoArraysCadenas {
                         .filter(s -> s.compareToIgnoreCase("m") > 0)
                         .sorted(String.CASE_INSENSITIVE_ORDER)
                         .collect(Collectors.toList()));
+
+        System.out.printf("Cadenas filtradas (mayores que m...) y ordenadas (orden descendente): %s%n",
+                Arrays.stream(cadenas)
+                        .filter(s -> s.compareToIgnoreCase("m") > 0)
+                        .sorted(String.CASE_INSENSITIVE_ORDER.reversed())
+                        .collect(Collectors.toList()));
     }
 }
