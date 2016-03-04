@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -37,7 +38,32 @@ public class ProcesarEmpleados {
         System.out.printf("%nPrimer empleado de los seleccionados:%n%s%n",
                 lista.stream()
                     .filter(condicion)
-                    .findFirst()
+                    .findFirst() // se detiene justo cuando lo encuentra ya que filter es una operación perezosa que no se ejecuta hasta que después hay un count, findFirst...
                     .get());
+
+        // Functions para luego hacer más sencilla la declaración de los comparadores sucesivos
+        Function<Empleado, String> refNombre = Empleado::obtenerNombre;
+        Function<Empleado, String> refPrimerApellido = Empleado::obtenerPrimerApellido;
+
+        Comparator<Empleado> comparador =
+                Comparator.comparing(refPrimerApellido)
+                        .thenComparing(refNombre);
+
+        System.out.printf("%nEmpleados en orden Apellido Nombre:%n");
+        lista.stream()
+                .sorted(comparador)
+                .forEach(System.out::println);
+        
+        System.out.printf("%nEmpleados en orden inverso Apellido Nombre:%n");
+        lista.stream()
+                .sorted(comparador.reversed())
+                .forEach(System.out::println);
+
+        System.out.printf("%nApellidos sin repeticiones y ordenados:%n");
+        lista.stream()
+                .map(Empleado::obtenerPrimerApellido)
+                .distinct()
+                .sorted()
+                .forEach(System.out::println);
     }
 }
