@@ -20,7 +20,7 @@ public class RandomIntStream {
                 .collect(Collectors.groupingBy(Function.identity(),
                         Collectors.counting()))
                 .forEach((resultado, contador) ->
-                        System.out.printf("%-10d-10d%d&%n", resultado, contador,
+                        System.out.printf("%-10s-10s%s&%n", resultado, contador,
                                 ((double) contador / muestras)));
 
         // Paso a paso
@@ -34,7 +34,7 @@ public class RandomIntStream {
         );
 
         mapaValorContador.forEach((resultado, contador) ->
-                System.out.printf("%-10d-10d%d&%n", resultado, contador,
+                System.out.printf("%-10s-10s%s&%n", resultado, contador,
                         ((double) contador / muestras)));
     }
 }
