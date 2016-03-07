@@ -96,5 +96,25 @@ public class ProcesarEmpleados {
                 )
         );
 
+        System.out.printf("%nSuma de sueldos de empleados: %.2f%n",
+                lista.stream()
+                .mapToDouble(Empleado::obtenerSueldo)
+                .sum());
+
+        System.out.printf("%nSuma de sueldos de empleados con reduce: %.2f%n",
+                lista.stream()
+                        .mapToDouble(Empleado::obtenerSueldo)
+                        .reduce(0, (value1, value2) -> value1 + value2));
+
+        System.out.printf("%nSueldo medio: %.2f%n",
+                lista.stream()
+                .mapToDouble(Empleado::obtenerSueldo)
+                .average()
+                .getAsDouble());
+
+        DoubleSummaryStatistics estadisticas = lista.stream().mapToDouble(Empleado::obtenerSueldo).summaryStatistics();
+
+        System.out.printf("%nSueldo medio con summary statistics: %.2f%n",
+                estadisticas.getAverage());
     }
 }
