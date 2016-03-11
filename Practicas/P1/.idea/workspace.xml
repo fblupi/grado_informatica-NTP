@@ -89,6 +89,7 @@
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../T1" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -190,12 +191,12 @@
       <created>1457685601617</created>
       <option name="number" value="Default" />
       <updated>1457685601617</updated>
-      <workItem from="1457685605028" duration="864000" />
+      <workItem from="1457685605028" duration="1044000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="864000" />
+    <option name="totallyTimeSpent" value="1044000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="260" y="27" width="1400" height="1000" extended-state="0" />
