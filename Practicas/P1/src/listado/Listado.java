@@ -47,7 +47,7 @@ public class Listado {
     }
 
     public long obtenerLongitud() {
-        return lista.size();
+        return lista.entrySet().stream().count();
     }
 
     public long obtenerLongitudNoFuncional() {

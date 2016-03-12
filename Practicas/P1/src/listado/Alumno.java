@@ -34,7 +34,7 @@ public class Alumno {
 
     @Override
     public String toString() {
-        String info = String.format("%-8s %-20s %-25s %s", dni, nombre, apellidos, email);
+        String info = String.format("%-8s %-18s %-22s %-12s", dni, nombre, apellidos, email);
         return "\n" + info + "\n" + asignacion.toString();
     }
 }
