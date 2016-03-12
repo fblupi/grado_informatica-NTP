@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Listado {
     /**
@@ -18,16 +17,17 @@ public class Listado {
     private Map<String, Alumno> lista;
 
     public Listado(String archivo) throws IOException {
-        lista = new HashMap<>();
-        Stream<String> lineas = Files.lines(Paths.get(archivo));
-        lineas.forEach(linea -> crearAlumno(linea));
+        lista = new HashMap<>(); // Inicializa el HashMap donde se almacenaran los alumnos
+        Files.lines(Paths.get(archivo)) // Se obtienen todas las lineas del archivo
+                .forEach(linea -> crearAlumno(linea)); // Para cada linea se crea el alumno que describe
     }
 
     private void crearAlumno(String linea) {
-        Pattern pattern = Pattern.compile("(,)");
-        List<String> infos = pattern.splitAsStream(linea).collect(Collectors.toList());
-        Alumno alumno = new Alumno(infos.get(0), infos.get(1), infos.get(2), infos.get(3));
-        lista.put(infos.get(0), alumno);
+        Pattern pattern = Pattern.compile("(,)"); // Se define un patron para las comas que hacen de separador
+        List<String> infos = pattern.splitAsStream(linea) // Se separan las lineas en cadenas
+                .collect(Collectors.toList()); // Se convierte el flujo en una lista de cadenas
+        Alumno alumno = new Alumno(infos.get(0), infos.get(1), infos.get(2), infos.get(3)); // Se crea el alumno
+        lista.put(infos.get(0), alumno); // Se incluye en el map
     }
 
     public void cargarArchivoAsignacion(String archivo) throws IOException {
@@ -47,7 +47,11 @@ public class Listado {
     }
 
     public long obtenerLongitud() {
-        return 0;
+        return lista.size();
+    }
+
+    public long obtenerLongitudNoFuncional() {
+        return lista.size();
     }
 
     @Override
@@ -56,7 +60,9 @@ public class Listado {
     }
 
     public static void main(String[] args) throws IOException {
-        Listado l = new Listado("/home/fblupi/Documentos/GitHub/grado_informatica-NTP/Practicas/P1/data/datos.txt");
+        Listado l = new Listado("./data/datos.txt");
         System.out.println(l.toString());
+        System.out.println(l.obtenerLongitud());
+        System.out.println(l.obtenerLongitudNoFuncional());
     }
 }

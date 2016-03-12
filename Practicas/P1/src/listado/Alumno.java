@@ -34,9 +34,7 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "\n\n" + apellidos + ", " + nombre
-                + "\n\tDNI: " + dni
-                + "\n\tEmail: " + email
-                + "\nAsignaturas:\n" + asignacion.toString();
+        String info = String.format("%-8s %-20s %-25s %s", dni, nombre, apellidos, email);
+        return "\n" + info + "\n" + asignacion.toString();
     }
 }
