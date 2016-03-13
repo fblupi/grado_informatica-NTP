@@ -1,6 +1,7 @@
 package listado;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Alumno {
     private final int NO_ASIGNADO = -1;
@@ -34,7 +35,10 @@ public class Alumno {
 
     @Override
     public String toString() {
-        String info = String.format("%-8s %-18s %-22s %-12s", dni, nombre, apellidos, email);
-        return "\n" + info + "\n" + asignacion.toString();
+        String resultado = String.format("\n%-8s %-18s %-22s %-12s\n", dni, nombre, apellidos, email);
+        for (Map.Entry<Asignatura, Integer> entry : asignacion.entrySet()) {
+            resultado += "\t" + entry.getKey() + ": " + entry.getValue() + "\n";
+        }
+        return resultado;
     }
 }

@@ -56,7 +56,11 @@ public class Listado {
 
     @Override
     public String toString() {
-        return lista.toString();
+        String resultado = "";
+        for (Alumno alumno : lista.values()) {
+            resultado += alumno.toString();
+        }
+        return resultado;
     }
 
     public static void main(String[] args) throws IOException {
