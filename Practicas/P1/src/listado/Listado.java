@@ -33,14 +33,13 @@ public class Listado {
     public void cargarArchivoAsignacion(String archivo) throws IOException {
         // Paso 1: Leer asignatura e incluirla a los alumnos sin asignarles grupo
         String asignatura = Files.lines(Paths.get(archivo)) // Obtiene todas las lineas
-                .filter(linea -> Character.isLetter(linea.charAt(0))) // Busca las que comiencen por una letra
                 .findFirst() // Escoge la primera
                 .get(); // Obtiene el String con la asignatura
         lista.forEach((s, alumno) -> alumno.asignarAsignatura(Asignatura.valueOf(asignatura), -1)); // Incluye la asignatura sin asignar grupo a todos los alumnos
 
         // Paso 2: Asignar grupos a los alumnos
-        Files.lines(Paths.get(archivo)) // Obtiene todas las lineas
-                .filter(linea -> Character.isDigit(linea.charAt(0))) // Busca las que comiencen por un digito
+        Files.lines(Paths.get(archivo)) // Obtiene todas las lineas (el otro se agoto con el findFirst)
+                .skip(2) // Se salta las dos primeras (nombre de asignatura y linea en blanco)
                 .forEach(linea -> asignarGrupoAsignatura(linea, Asignatura.valueOf(asignatura))); // Asigna grupo
     }
 
@@ -84,6 +83,9 @@ public class Listado {
     public static void main(String[] args) throws IOException {
         Listado l = new Listado("./data/datos.txt");
         l.cargarArchivoAsignacion("./data/asignacionES.txt");
+        l.cargarArchivoAsignacion("./data/asignacionLMD.txt");
+        l.cargarArchivoAsignacion("./data/asignacionMP.txt");
+        l.cargarArchivoAsignacion("./data/asignacionTOC.txt");
         System.out.println(l.toString());
         System.out.println(l.obtenerLongitud());
         System.out.println(l.obtenerLongitudNoFuncional());
