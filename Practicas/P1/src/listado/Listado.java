@@ -57,7 +57,21 @@ public class Listado {
     }
 
     public Map<Integer, Long> obtenerContadoresGruposDeAsignatura(Asignatura asignatura) {
-        return null;
+        Map<Integer, Long> resultado = new HashMap<>();
+
+        lista.entrySet()
+                .stream()
+                .map(Map.Entry::getValue)
+                .forEach(alumno -> {
+                    Long counter = 0L;
+                    if (resultado.get(alumno.getCurso(asignatura)) != null) {
+                        counter = resultado.get(alumno.getCurso(asignatura));
+                    }
+                    counter++;
+                    resultado.put(alumno.getCurso(asignatura), counter);
+                });
+
+        return resultado;
     }
 
     public List<Alumno> buscarAlumnosNoAsignados(String asignatura) {
@@ -91,5 +105,6 @@ public class Listado {
         l.cargarArchivoAsignacion("./data/asignacionLMD.txt");
         l.cargarArchivoAsignacion("./data/asignacionMP.txt");
         l.cargarArchivoAsignacion("./data/asignacionTOC.txt");
+        System.out.println(l.obtenerContadoresGruposDeAsignatura(Asignatura.ES).toString());
     }
 }

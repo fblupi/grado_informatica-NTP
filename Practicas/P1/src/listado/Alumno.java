@@ -33,6 +33,10 @@ public class Alumno {
             return true;
     }
 
+    Integer getCurso(Asignatura asignatura) {
+        return asignacion.get(asignatura);
+    }
+
     @Override
     public String toString() {
         String resultado = String.format("\n%-8s %-18s %-22s %-12s\n", dni, nombre, apellidos, email);
