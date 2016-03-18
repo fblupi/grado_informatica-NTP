@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Listado {
     /**
@@ -32,8 +31,10 @@ public class Listado {
     }
 
     public void cargarArchivoAsignacion(String archivo) throws IOException {
-        Stream<String> lineas = Files.lines(Paths.get(archivo));
-
+        String asignatura = Files.lines(Paths.get(archivo)) // Obtiene todas las lineas
+                .filter(linea -> Character.isLetter(linea.charAt(0))) // Busca la primera que comience por una letra
+                .findFirst().get(); // Obtiene el String con la asignatura
+        lista.forEach((s, alumno) -> alumno.asignarAsignatura(Asignatura.valueOf(asignatura), -1)); // Incluye la asignatura sin asignar grupo a todos los alumnos
     }
 
     public Map<Asignatura, Map<Integer, Long>> obtenerContadoresGrupos() {
@@ -67,6 +68,7 @@ public class Listado {
 
     public static void main(String[] args) throws IOException {
         Listado l = new Listado("./data/datos.txt");
+        l.cargarArchivoAsignacion("./data/asignacionES.txt");
         System.out.println(l.toString());
         System.out.println(l.obtenerLongitud());
         System.out.println(l.obtenerLongitudNoFuncional());
