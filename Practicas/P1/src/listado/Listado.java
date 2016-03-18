@@ -58,19 +58,17 @@ public class Listado {
 
     public Map<Integer, Long> obtenerContadoresGruposDeAsignatura(Asignatura asignatura) {
         Map<Integer, Long> resultado = new HashMap<>();
-
-        lista.entrySet()
-                .stream()
-                .map(Map.Entry::getValue)
-                .forEach(alumno -> {
+        lista.entrySet() // Obtiene las entradas del listado
+                .stream() // Las pasa a un flujo
+                .map(Map.Entry::getValue) // Mapea por valores
+                .forEach(alumno -> { // Para cada alumno
                     Long counter = 0L;
-                    if (resultado.get(alumno.getCurso(asignatura)) != null) {
-                        counter = resultado.get(alumno.getCurso(asignatura));
+                    if (resultado.get(alumno.getGrupo(asignatura)) != null) {
+                        counter = resultado.get(alumno.getGrupo(asignatura)); // Obtiene el numero de alumnos en ese grupo
                     }
-                    counter++;
-                    resultado.put(alumno.getCurso(asignatura), counter);
+                    counter++; // Aumenta el contador
+                    resultado.put(alumno.getGrupo(asignatura), counter); // Actualiza el map resultado
                 });
-
         return resultado;
     }
 

@@ -33,7 +33,7 @@ public class Alumno {
             return true;
     }
 
-    Integer getCurso(Asignatura asignatura) {
+    Integer getGrupo(Asignatura asignatura) {
         return asignacion.get(asignatura);
     }
 
