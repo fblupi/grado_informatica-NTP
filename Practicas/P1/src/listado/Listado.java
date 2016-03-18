@@ -31,10 +31,25 @@ public class Listado {
     }
 
     public void cargarArchivoAsignacion(String archivo) throws IOException {
+        // Paso 1: Leer asignatura e incluirla a los alumnos sin asignarles grupo
         String asignatura = Files.lines(Paths.get(archivo)) // Obtiene todas las lineas
-                .filter(linea -> Character.isLetter(linea.charAt(0))) // Busca la primera que comience por una letra
-                .findFirst().get(); // Obtiene el String con la asignatura
+                .filter(linea -> Character.isLetter(linea.charAt(0))) // Busca las que comiencen por una letra
+                .findFirst() // Escoge la primera
+                .get(); // Obtiene el String con la asignatura
         lista.forEach((s, alumno) -> alumno.asignarAsignatura(Asignatura.valueOf(asignatura), -1)); // Incluye la asignatura sin asignar grupo a todos los alumnos
+
+        // Paso 2: Asignar grupos a los alumnos
+        Files.lines(Paths.get(archivo)) // Obtiene todas las lineas
+                .filter(linea -> Character.isDigit(linea.charAt(0))) // Busca las que comiencen por un digito
+                .forEach(linea -> asignarGrupoAsignatura(linea, Asignatura.valueOf(asignatura))); // Asigna grupo
+    }
+
+    private void asignarGrupoAsignatura(String linea, Asignatura asignatura) {
+        Pattern pattern = Pattern.compile("\\s");
+        List<String> infos = pattern.splitAsStream(linea) // Se separan las lineas en cadenas
+                .collect(Collectors.toList()); // Se convierte el flujo en una lista de cadenas
+        lista.get(infos.get(0)) // Obtiene al alumno
+                .asignarAsignatura(asignatura, Integer.parseInt(infos.get(1))); // Le asigna el grupo
     }
 
     public Map<Asignatura, Map<Integer, Long>> obtenerContadoresGrupos() {
