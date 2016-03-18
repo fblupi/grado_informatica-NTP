@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Listado {
     /**
@@ -60,7 +61,11 @@ public class Listado {
     }
 
     public List<Alumno> buscarAlumnosNoAsignados(String asignatura) {
-        return null;
+        return lista.entrySet() // Obtiene las entradas del listado
+                .stream() // Las pasa a un flujo
+                .filter(entry -> !entry.getValue().cursarAsignatura(Asignatura.valueOf(asignatura))) // Filtra por alumnos que no están cursando una asignatura
+                .map(Map.Entry::getValue) // Mapea por valores
+                .collect(Collectors.toList()); // Lo pasa a la lista del resultado
     }
 
     public long obtenerLongitud() {
@@ -86,8 +91,5 @@ public class Listado {
         l.cargarArchivoAsignacion("./data/asignacionLMD.txt");
         l.cargarArchivoAsignacion("./data/asignacionMP.txt");
         l.cargarArchivoAsignacion("./data/asignacionTOC.txt");
-        System.out.println(l.toString());
-        System.out.println(l.obtenerLongitud());
-        System.out.println(l.obtenerLongitudNoFuncional());
     }
 }
