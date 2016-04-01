@@ -3,10 +3,7 @@ package listado;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -95,6 +92,18 @@ public class Listado {
                 .filter(entry -> !entry.getValue().cursarAsignatura(Asignatura.valueOf(asignatura))) // Filtra por alumnos que no están cursando una asignatura
                 .map(Map.Entry::getValue) // Mapea por valores
                 .collect(Collectors.toList()); // Lo pasa a la lista del resultado
+    }
+
+    public List<Alumno> buscarAlumnosNoAsignadosNoFuncional(String asignatura) {
+        List<Alumno> resultado = new ArrayList<>();
+
+        for (Alumno a : lista.values()) {
+            if (!a.cursarAsignatura(Asignatura.valueOf(asignatura))) {
+                resultado.add(a);
+            }
+        }
+
+        return  resultado;
     }
 
     public long obtenerLongitud() {
