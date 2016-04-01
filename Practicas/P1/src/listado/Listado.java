@@ -59,7 +59,6 @@ public class Listado {
     public Map<Asignatura, Map<Integer, Long>> obtenerContadoresGruposNoFuncional() {
         Asignatura[] asignaturas = Asignatura.values(); // Obtiene todas las asignaturas
         Map<Asignatura, Map<Integer, Long>> resultado = new HashMap<>(); // Crea el HashMap resultado
-
         for (Asignatura a : asignaturas) {
             resultado.put(a, obtenerContadoresGruposDeAsignaturaNoFuncional(a));
         }
@@ -68,12 +67,9 @@ public class Listado {
 
     public Map<Integer, Long> obtenerContadoresGruposDeAsignatura(Asignatura asignatura) {
         Map<Integer, Long> resultado = new HashMap<>();
-        lista.entrySet() // Obtiene las entradas del listado
-                .stream() // Las pasa a un flujo
-                .map(Map.Entry::getValue) // Mapea por valores
-                .forEach(alumno -> { // Para cada alumno
-                    resultado.merge(alumno.getGrupo(asignatura), 1L, Long::sum); // Añade el grupo, si no existe da valor 1, si no, incrementa
-                });
+        lista.values() // Obtiene los valores del map
+                .stream() // Crea un flujo sobre ellos
+                .forEach(alumno -> resultado.merge(alumno.getGrupo(asignatura), 1L, Long::sum)); // Para cada alumno añade el grupo, si existe ya incrementa, si no da valor 1
         return resultado;
     }
 
@@ -86,10 +82,9 @@ public class Listado {
     }
 
     public List<Alumno> buscarAlumnosNoAsignados(String asignatura) {
-        return lista.entrySet() // Obtiene las entradas del listado
-                .stream() // Las pasa a un flujo
-                .filter(entry -> !entry.getValue().cursarAsignatura(Asignatura.valueOf(asignatura))) // Filtra por alumnos que no están cursando una asignatura
-                .map(Map.Entry::getValue) // Mapea por valores
+        return lista.values() // Obtiene los valores del map
+                .stream() // Crea un flujo sobre ellos
+                .filter(alumno -> !alumno.cursarAsignatura(Asignatura.valueOf(asignatura))) // Filtra por alumnos que no están cursando una asignatura
                 .collect(Collectors.toList()); // Lo pasa a la lista del resultado
     }
 
