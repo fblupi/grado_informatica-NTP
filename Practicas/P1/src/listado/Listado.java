@@ -35,7 +35,6 @@ public class Listado {
                 .findFirst() // Escoge la primera
                 .get(); // Obtiene el String con la asignatura
         lista.forEach((s, alumno) -> alumno.asignarAsignatura(Asignatura.valueOf(asignatura), -1)); // Incluye la asignatura sin asignar grupo a todos los alumnos
-
         // Paso 2: Asignar grupos a los alumnos
         Files.lines(Paths.get(archivo)) // Obtiene todas las lineas (el otro se agoto con el findFirst)
                 .skip(2) // Se salta las dos primeras (nombre de asignatura y linea en blanco)
@@ -52,10 +51,8 @@ public class Listado {
 
     public Map<Asignatura, Map<Integer, Long>> obtenerContadoresGrupos() {
         Map<Asignatura, Map<Integer, Long>> resultado = new HashMap<>(); // Crea el HashMap resultado
-
         Stream.of(Asignatura.values()) // Crea un flujo con el array de asignaturas
                 .forEach(a -> resultado.put(a, obtenerContadoresGruposDeAsignatura(a))); // Para cada una obtiene el contador de grupos
-
         return resultado;
     }
 
@@ -64,9 +61,8 @@ public class Listado {
         Map<Asignatura, Map<Integer, Long>> resultado = new HashMap<>(); // Crea el HashMap resultado
 
         for (Asignatura a : asignaturas) {
-            resultado.put(a, obtenerContadoresGruposDeAsignatura(a));
+            resultado.put(a, obtenerContadoresGruposDeAsignaturaNoFuncional(a));
         }
-
         return resultado;
     }
 
@@ -76,13 +72,16 @@ public class Listado {
                 .stream() // Las pasa a un flujo
                 .map(Map.Entry::getValue) // Mapea por valores
                 .forEach(alumno -> { // Para cada alumno
-                    Long counter = 0L;
-                    if (resultado.get(alumno.getGrupo(asignatura)) != null) {
-                        counter = resultado.get(alumno.getGrupo(asignatura)); // Obtiene el numero de alumnos en ese grupo
-                    }
-                    counter++; // Aumenta el contador
-                    resultado.put(alumno.getGrupo(asignatura), counter); // Actualiza el map resultado
+                    resultado.merge(alumno.getGrupo(asignatura), 1L, Long::sum); // Añade el grupo, si no existe da valor 1, si no, incrementa
                 });
+        return resultado;
+    }
+
+    public Map<Integer, Long> obtenerContadoresGruposDeAsignaturaNoFuncional(Asignatura asignatura) {
+        Map<Integer, Long> resultado = new HashMap<>();
+        for (Alumno a : lista.values()) {
+            resultado.merge(a.getGrupo(asignatura), 1L, Long::sum); // Añade el grupo, si no existe da valor 1, si no, incrementa
+        }
         return resultado;
     }
 
@@ -96,13 +95,11 @@ public class Listado {
 
     public List<Alumno> buscarAlumnosNoAsignadosNoFuncional(String asignatura) {
         List<Alumno> resultado = new ArrayList<>();
-
         for (Alumno a : lista.values()) {
             if (!a.cursarAsignatura(Asignatura.valueOf(asignatura))) {
                 resultado.add(a);
             }
         }
-
         return  resultado;
     }
 
@@ -129,6 +126,6 @@ public class Listado {
         l.cargarArchivoAsignacion("./data/asignacionLMD.txt");
         l.cargarArchivoAsignacion("./data/asignacionMP.txt");
         l.cargarArchivoAsignacion("./data/asignacionTOC.txt");
-        l.obtenerContadoresGrupos();
+        System.out.println(l.toString());
     }
 }
