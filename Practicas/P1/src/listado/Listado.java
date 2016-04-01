@@ -59,8 +59,8 @@ public class Listado {
     public Map<Asignatura, Map<Integer, Long>> obtenerContadoresGruposNoFuncional() {
         Asignatura[] asignaturas = Asignatura.values(); // Obtiene todas las asignaturas
         Map<Asignatura, Map<Integer, Long>> resultado = new HashMap<>(); // Crea el HashMap resultado
-        for (Asignatura a : asignaturas) {
-            resultado.put(a, obtenerContadoresGruposDeAsignaturaNoFuncional(a));
+        for (Asignatura a : asignaturas) { // Recorre todas las asignaturas
+            resultado.put(a, obtenerContadoresGruposDeAsignaturaNoFuncional(a)); // Para cada una obtiene el contador de grupos
         }
         return resultado;
     }
@@ -75,7 +75,7 @@ public class Listado {
 
     public Map<Integer, Long> obtenerContadoresGruposDeAsignaturaNoFuncional(Asignatura asignatura) {
         Map<Integer, Long> resultado = new HashMap<>();
-        for (Alumno a : lista.values()) {
+        for (Alumno a : lista.values()) { // Recorre todos los alumnos
             resultado.merge(a.getGrupo(asignatura), 1L, Long::sum); // Añade el grupo, si no existe da valor 1, si no, incrementa
         }
         return resultado;
@@ -90,29 +90,27 @@ public class Listado {
 
     public List<Alumno> buscarAlumnosNoAsignadosNoFuncional(String asignatura) {
         List<Alumno> resultado = new ArrayList<>();
-        for (Alumno a : lista.values()) {
-            if (!a.cursarAsignatura(Asignatura.valueOf(asignatura))) {
-                resultado.add(a);
+        for (Alumno a : lista.values()) { // Recorre todos los alumnos
+            if (!a.cursarAsignatura(Asignatura.valueOf(asignatura))) { // Si no está cursando una asignatura
+                resultado.add(a); // Lo añade al resultado
             }
         }
         return  resultado;
     }
 
     public long obtenerLongitud() {
-        return lista.entrySet().stream().count();
+        return lista.entrySet() // Obtiene las entradas
+                .stream() // Crea un flujo sobre ellas
+                .count(); // Cuenta cuántas hay
     }
 
     public long obtenerLongitudNoFuncional() {
-        return lista.size();
+        return lista.size(); // Devuelve el tamaño del map
     }
 
     @Override
     public String toString() {
-        String resultado = "";
-        for (Alumno alumno : lista.values()) {
-            resultado += alumno.toString();
-        }
-        return resultado;
+        return lista.values().toString();
     }
 
     public static void main(String[] args) throws IOException {
