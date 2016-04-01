@@ -54,10 +54,9 @@ public class Listado {
     }
 
     public Map<Asignatura, Map<Integer, Long>> obtenerContadoresGrupos() {
-        Asignatura[] asignaturas = Asignatura.values(); // Obtiene todas las asignaturas
         Map<Asignatura, Map<Integer, Long>> resultado = new HashMap<>(); // Crea el HashMap resultado
 
-        Arrays.stream(asignaturas) // Crea un flujo con el array de asignaturas
+        Stream.of(Asignatura.values()) // Crea un flujo con el array de asignaturas
                 .forEach(a -> resultado.put(a, obtenerContadoresGruposDeAsignatura(a))); // Para cada una obtiene el contador de grupos
 
         return resultado;
