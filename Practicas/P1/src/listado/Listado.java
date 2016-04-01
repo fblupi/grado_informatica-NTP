@@ -3,6 +3,7 @@ package listado;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +54,24 @@ public class Listado {
     }
 
     public Map<Asignatura, Map<Integer, Long>> obtenerContadoresGrupos() {
-        return null;
+        Asignatura[] asignaturas = Asignatura.values(); // Obtiene todas las asignaturas
+        Map<Asignatura, Map<Integer, Long>> resultado = new HashMap<>(); // Crea el HashMap resultado
+
+        Arrays.stream(asignaturas) // Crea un flujo con el array de asignaturas
+                .forEach(a -> resultado.put(a, obtenerContadoresGruposDeAsignatura(a))); // Para cada una obtiene el contador de grupos
+
+        return resultado;
+    }
+
+    public Map<Asignatura, Map<Integer, Long>> obtenerContadoresGruposNoFuncional() {
+        Asignatura[] asignaturas = Asignatura.values(); // Obtiene todas las asignaturas
+        Map<Asignatura, Map<Integer, Long>> resultado = new HashMap<>(); // Crea el HashMap resultado
+
+        for (Asignatura a : asignaturas) {
+            resultado.put(a, obtenerContadoresGruposDeAsignatura(a));
+        }
+
+        return resultado;
     }
 
     public Map<Integer, Long> obtenerContadoresGruposDeAsignatura(Asignatura asignatura) {
@@ -103,6 +121,6 @@ public class Listado {
         l.cargarArchivoAsignacion("./data/asignacionLMD.txt");
         l.cargarArchivoAsignacion("./data/asignacionMP.txt");
         l.cargarArchivoAsignacion("./data/asignacionTOC.txt");
-        System.out.println(l.obtenerContadoresGruposDeAsignatura(Asignatura.ES).toString());
+        l.obtenerContadoresGrupos();
     }
 }
