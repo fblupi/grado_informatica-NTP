@@ -37,7 +37,8 @@ object Main {
     * @return
     */
   def calcularValorTrianguloPascal(columna: Int, fila: Int): Int = {
-     // A rellenar
+    // A rellenar
+    2
   }
 
   /**
@@ -47,7 +48,19 @@ object Main {
     * @return valor booleano con el resultado de la operacion
     */
   def chequearBalance(cadena: List[Char]): Boolean = {
-     // A rellenar
+    def contarParentesis(cadena : List[Char], contador : Int) : Int = {
+      if (cadena.isEmpty) contador
+      else {
+        val acumulador = cadena.head match {
+          case ')' => contador - 1
+          case '(' => contador + 1
+          case _ => contador
+        }
+        if (acumulador < 0) acumulador
+        else contarParentesis(cadena.tail, acumulador)
+      }
+    }
+    contarParentesis(cadena, 0) == 0
   }
 
   /**
@@ -59,6 +72,7 @@ object Main {
     * @return contador de numero de vueltas posibles
     */
   def contarCambiosPosibles(cantidad: Int, monedas: List[Int]): Int = {
-     // A rellenar
+    // A rellenar
+    4
   }
 }
