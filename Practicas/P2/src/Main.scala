@@ -37,8 +37,8 @@ object Main {
     * @return
     */
   def calcularValorTrianguloPascal(columna: Int, fila: Int): Int = {
-    // A rellenar
-    2
+    if (columna == 0 || columna == fila) 1
+    else calcularValorTrianguloPascal(columna - 1, fila - 1) + calcularValorTrianguloPascal(columna, fila - 1)
   }
 
   /**
@@ -48,13 +48,13 @@ object Main {
     * @return valor booleano con el resultado de la operacion
     */
   def chequearBalance(cadena: List[Char]): Boolean = {
-    def contarParentesis(cadena : List[Char], contador : Int) : Int = {
+    def contarParentesis(cadena: List[Char], contador: Int): Int = {
       if (cadena.isEmpty) contador
       else {
         val acumulador = cadena.head match {
           case ')' => contador - 1
           case '(' => contador + 1
-          case _ => contador
+          case _   => contador
         }
         if (acumulador < 0) acumulador
         else contarParentesis(cadena.tail, acumulador)
