@@ -26,8 +26,8 @@
       <file leaf-file-name="Racional1.sc" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Racional1.sc">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18663594">
-              <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.20737328">
+              <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -623,12 +623,12 @@
       <created>1460360259490</created>
       <option name="number" value="Default" />
       <updated>1460360259490</updated>
-      <workItem from="1460360262375" duration="2270000" />
+      <workItem from="1460360262375" duration="2644000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2270000" />
+    <option name="totallyTimeSpent" value="2644000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1055" extended-state="6" />
@@ -669,8 +669,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Racional1.sc">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18663594">
-          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.20737328">
+          <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
           <folding />
         </state>
       </provider>
