@@ -2,13 +2,14 @@ class Racional(n: Int, d: Int) {
 
   require(d != 0)
 
-  val numerador: Int = n
-  val denominador: Int = d
+  private val factor = mcd(n, d)
+  val numerador: Int = n / factor
+  val denominador: Int = d / factor
 
   def this(n: Int) = this(n, 1)
 
   override def toString =
-    n + "/" + d
+    numerador + "/" + denominador
 
   override def equals(otro : Any) =
     otro.isInstanceOf[Racional] &&
