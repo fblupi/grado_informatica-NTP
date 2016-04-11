@@ -20,15 +20,15 @@ class Racional(n: Int, d: Int) {
     if (b == 0) a
     else mcd(b, a % b)
 
-  def sumar(otro: Racional) =
+  def + (otro: Racional) =
     new Racional(numerador * otro.denominador + otro.numerador * denominador,
       denominador * otro.denominador)
 
-  def menorQue(otro: Racional) =
+  def < (otro: Racional) =
     numerador * otro.denominador < otro.numerador * denominador
 
   def max(otro: Racional) =
-    if (this.menorQue(otro)) otro
+    if (this < otro) otro
     else this
 
 }
@@ -36,12 +36,12 @@ class Racional(n: Int, d: Int) {
 //val objFeo = new Racional(5, 0)
 val obj1 = new Racional(2, 3)
 val obj2 = new Racional(4, 2)
-val obj3 = obj1.sumar(obj2)
+val obj3 = obj1 + obj2
 val obj4 = new Racional(2, 3)
 obj1.equals(obj4)
 obj1.equals(obj2)
-obj1.menorQue(obj2)
-obj2.menorQue(obj1)
+obj1 < obj2
+obj2 < obj1
 val obj5 = obj1.max(obj2)
 val obj6 = obj2.max(obj1)
 val obj7 = new Racional(4)
