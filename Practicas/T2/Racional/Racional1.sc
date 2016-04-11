@@ -13,15 +13,15 @@ class Racional(n: Int, d: Int) {
       otro.asInstanceOf[Racional].numerador == numerador &&
       otro.asInstanceOf[Racional].denominador == denominador
 
-  def sumar(otro: Racional): Racional =
+  def sumar(otro: Racional) =
     new Racional(numerador * otro.denominador + otro.numerador * denominador,
       denominador * otro.denominador)
 
   def menorQue(otro: Racional) =
     numerador * otro.denominador < otro.numerador * denominador
 
-  def max(otro: Racional): Racional =
-    if (menorQue(otro)) otro
+  def max(otro: Racional) =
+    if (this.menorQue(otro)) otro
     else this
 }
 
