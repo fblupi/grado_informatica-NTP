@@ -12,4 +12,23 @@ def imprimirTablasFor = {
   }
 }
 
-imprimirTablasFor
+def imprimirTablasWhile = {
+  var i = 1
+  while (i <= 10) {
+    var j = 1
+    while (j <= 10) {
+      val prod = (i * j).toString
+      var blank = prod.length
+      while (blank < 4) {
+        print(" ")
+        blank = blank + 1
+      }
+      print(prod)
+      j = j + 1
+    }
+    print("\n")
+    i = i + 1
+  }
+}
+
+imprimirTablasWhile
