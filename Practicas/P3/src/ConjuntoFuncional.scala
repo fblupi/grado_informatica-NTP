@@ -7,7 +7,7 @@ object ConjuntoFuncional {
     * Un conjunto funcional se representa mediante una funcion
     * caracteristica, un predicado. De esta forma, se declara
     * el tipo conjunto como un predicado que recibe un entero
-    * (elemento) como argumento y dvuelve un valor booleano
+    * (elemento) como argumento y devuelve un valor booleano
     * que indica si pertenece o no al conjunto
     */
   type Conjunto = Int => Boolean
@@ -29,7 +29,7 @@ object ConjuntoFuncional {
     * @return
     *         
     */
-  def conjuntoUnElemento(elemento: Int): Conjunto = (x: Int) => x == elemento
+  def conjuntoUnElemento(elemento: Int): Conjunto = (x: Int) => x == elemento // _ == elemento
 
   /**
     * Union de dos conjuntos
@@ -38,7 +38,7 @@ object ConjuntoFuncional {
     * @param conjunto2
     * @return
     */
-  def union(conjunto1: Conjunto, conjunto2: Conjunto): Conjunto =
+  def union(conjunto1: Conjunto, conjunto2: Conjunto): Conjunto = (x: Int) => conjunto1(x) || conjunto2(x)
 
   /**
     * Interseccion de dos conjuntos
@@ -47,7 +47,7 @@ object ConjuntoFuncional {
     * @param conjunto2
     * @return
     */
-  def interseccion(conjunto1: Conjunto, conjunto2: Conjunto): Conjunto =
+  def interseccion(conjunto1: Conjunto, conjunto2: Conjunto): Conjunto = (x: Int) => conjunto1(x) && conjunto2(x)
 
   /**
     * Diferencia entre dos conjuntos
