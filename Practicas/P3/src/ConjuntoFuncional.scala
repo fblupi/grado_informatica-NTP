@@ -14,6 +14,7 @@ object ConjuntoFuncional {
 
   /**
     * Metodo para determinar si un elemento pertenece al conjunto
+    *
     * @param conjunto
     * @param elemento
     * @return
@@ -23,45 +24,50 @@ object ConjuntoFuncional {
   /**
     * Devuelve un conjunto asociado al elemento pasado como
     * argumento
+    *
     * @param elemento
     * @return
     *         
     */
-  def conjuntoUnElemento(elemento: Int): Conjunto = 
+  def conjuntoUnElemento(elemento: Int): Conjunto = (x: Int) => x == elemento
 
   /**
     * Union de dos conjuntos
+    *
     * @param conjunto1
     * @param conjunto2
     * @return
     */
-  def union(conjunto1: Conjunto, conjunto2: Conjunto): Conjunto = 
+  def union(conjunto1: Conjunto, conjunto2: Conjunto): Conjunto =
 
   /**
     * Interseccion de dos conjuntos
+    *
     * @param conjunto1
     * @param conjunto2
     * @return
     */
-  def interseccion(conjunto1: Conjunto, conjunto2: Conjunto): Conjunto = 
+  def interseccion(conjunto1: Conjunto, conjunto2: Conjunto): Conjunto =
 
   /**
     * Diferencia entre dos conjuntos
+    *
     * @param conjunto1
     * @param conjunto2
     * @return
     */
-  def diferencia(conjunto1: Conjunto, conjunto2: Conjunto): Conjunto = 
+  def diferencia(conjunto1: Conjunto, conjunto2: Conjunto): Conjunto =
 
   /**
     * Filtrado para obtener el conjunto de los elementos que cumplen
     * el predicado pasado como argumento
+    *
     * @param conjunto
     * @param p
     * @return
     */
-  def filter(conjunto: Conjunto, p: Int => Boolean): Conjunto = 
-  
+  def filter(conjunto: Conjunto, p: Int => Boolean): Conjunto =
+
   /**
     * Limite para la iteracion necesaria con paraTodo y existe,
     * entre -1000 y 1000
@@ -71,6 +77,7 @@ object ConjuntoFuncional {
   /**
     * Determina si todos los elementos del conjunto cumplen
     * la condicion indicada por el predicado
+    *
     * @param conjunto
     * @param p
     * @return
@@ -83,42 +90,46 @@ object ConjuntoFuncional {
       else if (???) ???
       else iter(???)
     }
-    
+
     iter(???)
   }
 
   /**
     * Determina si existe al menos un elemento en el conjunto
     * que cumple el predicado indicado
+    *
     * @param conjunto
     * @param p
     * @return
     */
-  def existe(conjunto: Conjunto, p: Int => Boolean): Boolean = 
+  def existe(conjunto: Conjunto, p: Int => Boolean): Boolean =
 
   /**
     * Genera un nuevo conjunto transformando los elementos del
     * conjunto pasado como argumento y aplicando la transformacion
     * dada por la funcion pasada como segundo argumento
+    *
     * @param conjunto
     * @param funcion
     * @return
     */
-  def map(conjunto: Conjunto, funcion: Int => Int): Conjunto = 
+  def map(conjunto: Conjunto, funcion: Int => Int): Conjunto =
 
   /**
     * Crea una cadena con el contenido completo del conjunto
+    *
     * @param conjunto
     * @return
     */
   def toString(conjunto: Conjunto): String = {
     val elementos = for (
-       i <- -limite to limite if contiene(conjunto, i)) yield i
+      i <- -LIMITE to LIMITE if contiene(conjunto, i)) yield i
     elementos.mkString("{", ",", "}")
   }
 
   /**
     * Muestra el contenido completo del conjunto por pantalla
+    *
     * @param conjunto
     */
   def printSet(conjunto: Conjunto) {
