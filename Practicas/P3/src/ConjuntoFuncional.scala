@@ -56,7 +56,7 @@ object ConjuntoFuncional {
     * @param conjunto2
     * @return
     */
-  def diferencia(conjunto1: Conjunto, conjunto2: Conjunto): Conjunto =
+  def diferencia(conjunto1: Conjunto, conjunto2: Conjunto): Conjunto = (x: Int) => conjunto1(x) && !conjunto2(x)
 
   /**
     * Filtrado para obtener el conjunto de los elementos que cumplen
@@ -66,7 +66,7 @@ object ConjuntoFuncional {
     * @param p
     * @return
     */
-  def filter(conjunto: Conjunto, p: Int => Boolean): Conjunto =
+  def filter(conjunto: Conjunto, p: Int => Boolean): Conjunto = (x: Int) => conjunto(x) && p(x)
 
   /**
     * Limite para la iteracion necesaria con paraTodo y existe,
@@ -90,7 +90,6 @@ object ConjuntoFuncional {
       else if (???) ???
       else iter(???)
     }
-
     iter(???)
   }
 
