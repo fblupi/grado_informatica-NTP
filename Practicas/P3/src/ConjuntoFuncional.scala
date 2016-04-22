@@ -86,11 +86,11 @@ object ConjuntoFuncional {
     // Funcion auxiliar para iterar sobre los valores desde
     // -LIMITE a LIMITE
     def iter(elemento: Int): Boolean = {
-      if (???) ???
-      else if (???) ???
-      else iter(???)
+      if (elemento > LIMITE) true
+      else if (!conjunto(elemento)) iter(elemento + 1)
+      else p(elemento) && iter(elemento + 1)
     }
-    iter(???)
+    iter(-LIMITE)
   }
 
   /**
