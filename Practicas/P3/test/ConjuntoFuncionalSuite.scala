@@ -20,7 +20,7 @@ class ConjuntoFuncionalSuite extends FunSuite {
   }
 
   /**
-    * Test para conjuntoUnElemento y contiene
+    * Test de conjunto de un elemento y contiene
     */
   test("test de conjunto de un elemento y contiene") {
     new TestSets {
@@ -32,7 +32,7 @@ class ConjuntoFuncionalSuite extends FunSuite {
   }
 
   /**
-    * Test para la union
+    * Test de union
     */
   test("test de union") {
     new TestSets {
@@ -65,7 +65,7 @@ class ConjuntoFuncionalSuite extends FunSuite {
   }
 
   /**
-    * Test para interseccion
+    * Test de interseccion
     */
   test("test de interseccion") {
     val conjunto1 = (x: Int) => x > 7
@@ -105,29 +105,35 @@ class ConjuntoFuncionalSuite extends FunSuite {
   /**
     * Test de filtrado
     */
-  test("Test de filtrado") {
-    val conjunto1 = (x: Int) => x > 3
-    val conjunto2 = (x: Int) => x < 10
+  test("test de filtrado") {
+    val conjunto = (x: Int) => x >= -2
 
-    // Deja en conjunto1 los elementos de conjunto2
-    val conjuntoFiltrado = filter(conjunto1, conjunto2)
+    // Deja en conjunto los elementos pares
+    val conjuntoFiltrado = filter(conjunto, (x: Int) => x % 2 == 0)
 
-    // 6 debe pertenecer y 11 no
-    assert(contiene(conjuntoFiltrado, 6))
-    assert(!contiene(conjuntoFiltrado, 11))
+    // -2, 0, 14 y 56 pertenecen
+    assert(contiene(conjuntoFiltrado, -2), "fallo: conjuntoFiltrado no contiene a -2")
+    assert(contiene(conjuntoFiltrado, 0), "fallo: conjuntoFiltrado no contiene a 0")
+    assert(contiene(conjuntoFiltrado, 14), "fallo: conjuntoFiltrado no contiene a 14")
+    assert(contiene(conjuntoFiltrado, 56), "fallo: conjuntoFiltrado no contiene a 56")
+
+    // -4, 7 y 99 no pertenecen
+    assert(!contiene(conjuntoFiltrado, -4), "fallo: conjuntoFiltrado contiene a -4")
+    assert(!contiene(conjuntoFiltrado, 7), "fallo: conjuntoFiltrado contiene a 7")
+    assert(!contiene(conjuntoFiltrado, 99), "fallo: conjuntoFiltrado contiene a 99")
   }
 
   /**
-    * Test de forall
+    * Test de para todo
     */
-  test("Test de paraTodo") {
-    val conjunto = (x: Int) => x < 10
+  test("test de para todo") {
+    val conjunto = (x: Int) => x > 14
 
-    // No todos los elementos del conjunto son > 0
-    assert(!paraTodo(conjunto, x => x > 0))
+    // Todos son mayores que 7
+    assert(paraTodo(conjunto, x => x > 7), "fallo: no todos los elementos del conjunto son mayores que 7")
 
-    // Si que todos son menores de 15
-    assert(paraTodo(conjunto, x => x < 15))
+    // No todos los elementos del conjunto son pares
+    assert(!paraTodo(conjunto, x => x % 2 == 0), "fallo: todos los elementos del conjunto son pares")
   }
 
   /**
