@@ -11,92 +11,95 @@ class ConjuntoFuncionalSuite extends FunSuite {
   // Se importan las declaraciones  en ConjuntoFuncional
   import ConjuntoFuncional._
 
-
   // Se crea un trait incluyendo tres conjuntos, que se
   // usan en cada test
   trait TestSets {
-    val s1 = conjuntoUnElemento(1)
-    val s2 = conjuntoUnElemento(2)
-    val s3 = conjuntoUnElemento(3)
+    val s0 = conjuntoUnElemento(0)
+    val sMenos5 = conjuntoUnElemento(-5)
+    val s14 = conjuntoUnElemento(14)
   }
 
   /**
-    * Se comprueba que el elemento 1 esta contenido en s1
+    * Test para conjuntoUnElemento y contiene
     */
-  test("s1 contiene 1") {
-
-    // Se crea instancia de los conjuntos
+  test("test de conjunto de un elemento y contiene") {
     new TestSets {
-      // Si falla el assert se muestra el mensaje de error
-      // que aparece como segundo argumento
-      assert(contiene(s1, 1), "fallo: s1 no contiene a 1")
+      assert(contiene(s0, 0), "fallo: s0 no contiene a 0")
+      assert(contiene(sMenos5, -5), "fallo: sMenos5 no contiene a -5")
+      assert(contiene(s14, 14), "fallo: s14 no contiene a 14")
+      assert(!contiene(s14, -5), "fallo: s14 contiene a -5")
     }
   }
 
   /**
-    * Test for union
+    * Test para la union
     */
   test("test de union") {
     new TestSets {
-      val s = union(s1, s2)
-      assert(contiene(s, 1), "fallo: s no contiene a 1")
-      assert(contiene(s, 2), "fallo: s no contiene a 2")
-      assert(!contiene(s, 3), "fallo: s contiene a 3")
+      // Conjunto union: enteros mayores de 3
+      val s = union(s0, s14)
+
+      // 0 y 14 pertenecen a al union
+      assert(contiene(s, 0), "fallo: s no contiene a 0")
+      assert(contiene(s, 14), "fallo: s no contiene a 14")
+
+      // -5 no pertenece a la union
+      assert(!contiene(s, -5), "fallo: s contiene a -5")
+
+      // Dos conjuntos, uno de mayores que 0 y otro de menores que 0
+      val conjunto1 = (x: Int) => x > 0
+      val conjunto2 = (x: Int) => x < 0
+
+      // Conjunto union: enteros mayores de 3
+      val conjuntoUnion = union(conjunto1, conjunto2)
+
+      // 4, 5, 6 y 7  pertenecen a la union
+      assert(contiene(conjuntoUnion, 1), "fallo: conjuntoUnion no contiene a 1")
+      assert(contiene(conjuntoUnion, 36), "fallo: conjuntoUnion no contiene a 36")
+      assert(contiene(conjuntoUnion, -4), "fallo: conjuntoUnion no contiene a -4")
+      assert(contiene(conjuntoUnion, 99), "fallo: conjuntoUnion no contiene a 99")
+
+      // 0 no pertenece a la union
+      assert(!contiene(conjuntoUnion, 0), "fallo: conjuntoUnion contiene a 0")
     }
-  }
-
-  /**
-    * Otro test para la union
-    */
-  test("Test de union (general)") {
-    val conjunto1 = (x: Int) => x > 3
-    val conjunto2 = (x: Int) => x > 5
-
-    // Conjunto union: enteros mayores de 3
-    val conjuntoUnion = union(conjunto1, conjunto2)
-
-    // 4, 5, 6 y 7  pertenecen a la union
-    assert(contiene(conjuntoUnion, 4))
-    assert(contiene(conjuntoUnion, 5))
-    assert(contiene(conjuntoUnion, 6))
-    assert(contiene(conjuntoUnion, 7))
-
-    // 3 y 0 no pertenecen a la union
-    assert(!contiene(conjuntoUnion, 3))
-    assert(!contiene(conjuntoUnion, 0))
   }
 
   /**
     * Test para interseccion
     */
-  test("Test de interseccion") {
-    val conjunto1 = (x: Int) => x > 3
-    val conjunto2 = (x: Int) => x > 5
+  test("test de interseccion") {
+    val conjunto1 = (x: Int) => x > 7
+    val conjunto2 = (x: Int) => x >= 14
 
     // Formacion de la interseccion: solo a partir de 5
     val conjuntoInterseccion = interseccion(conjunto1, conjunto2)
 
-    // 6 pertenece
-    assert(contiene(conjuntoInterseccion, 6))
+    // 14 y 99 pertenecen
+    assert(contiene(conjuntoInterseccion, 14), "fallo: conjuntoInterseccion no contiene a 14")
+    assert(contiene(conjuntoInterseccion, 99), "fallo: conjuntoInterseccion no contiene a 99")
 
-    // no 4 ni 5 pertenecen
-    assert(!contiene(conjuntoInterseccion, 4))
-    assert(!contiene(conjuntoInterseccion, 5))
+    // ni 7 ni 13 pertenecen
+    assert(!contiene(conjuntoInterseccion, 7), "fallo: conjuntoInterseccion contiene a 7")
+    assert(!contiene(conjuntoInterseccion, 13), "fallo: conjuntoInterseccion contiene a 13")
   }
 
   /**
     * Test de diferencia
     */
-  test("Test de diferencia") {
-    val conjunto1 = (x: Int) => x > 3
-    val conjunto2 = (x: Int) => x < 10
+  test("test de diferencia") {
+    val conjunto1 = (x: Int) => x >= 14
+    val conjunto2 = (x: Int) => x > 15
 
-    // Diferencia: mayores de 3 pero no menores de 10
+    // Diferencia: mayores o iguales a 14 pero no mayores de 15
     val conjuntoDiferencia = diferencia(conjunto1, conjunto2)
 
-    // 6 no pertenece y 11 si
-    assert(!contiene(conjuntoDiferencia, 6))
-    assert(contiene(conjuntoDiferencia, 11))
+    // 14 y 15 pertenecen
+    assert(contiene(conjuntoDiferencia, 14), "fallo: conjuntoDiferencia no contiene a 14")
+    assert(contiene(conjuntoDiferencia, 15), "fallo: conjuntoDiferencia no contiene a 15")
+
+    // ni 13 ni 16 pertenecen
+    assert(!contiene(conjuntoDiferencia, 13), "fallo: conjuntoDiferencia contiene a 13")
+    assert(!contiene(conjuntoDiferencia, 16), "fallo: conjuntoDiferencia contiene a 16")
   }
 
   /**
