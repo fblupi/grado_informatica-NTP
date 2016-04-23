@@ -101,7 +101,7 @@ object ConjuntoFuncional {
     * @param p
     * @return
     */
-  def existe(conjunto: Conjunto, p: Int => Boolean): Boolean =
+  def existe(conjunto: Conjunto, p: Int => Boolean): Boolean = !paraTodo(conjunto, x => !p(x))
 
   /**
     * Genera un nuevo conjunto transformando los elementos del
@@ -112,7 +112,7 @@ object ConjuntoFuncional {
     * @param funcion
     * @return
     */
-  def map(conjunto: Conjunto, funcion: Int => Int): Conjunto =
+  def map(conjunto: Conjunto, funcion: Int => Int): Conjunto = null
 
   /**
     * Crea una cadena con el contenido completo del conjunto
