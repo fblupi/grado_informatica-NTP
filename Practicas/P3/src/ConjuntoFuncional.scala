@@ -112,7 +112,7 @@ object ConjuntoFuncional {
     * @param funcion
     * @return
     */
-  def map(conjunto: Conjunto, funcion: Int => Int): Conjunto = null
+  def map(conjunto: Conjunto, funcion: Int => Int): Conjunto = (x: Int) => existe(conjunto, y => funcion(y) == x)
 
   /**
     * Crea una cadena con el contenido completo del conjunto
