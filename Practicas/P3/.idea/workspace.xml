@@ -36,8 +36,8 @@
       <file leaf-file-name="ConjuntoFuncionalSuite.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/ConjuntoFuncionalSuite.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.030150754">
-              <caret line="132" column="104" selection-start-line="132" selection-start-column="104" selection-end-line="132" selection-end-column="104" />
+            <state vertical-scroll-proportion="5.276382">
+              <caret line="175" column="78" selection-start-line="175" selection-start-column="78" selection-end-line="175" selection-end-column="78" />
               <folding>
                 <element signature="e#1#30#0" expanded="true" />
               </folding>
@@ -694,26 +694,11 @@
       <option name="number" value="Default" />
       <updated>1461313329649</updated>
       <workItem from="1461313335173" duration="4166000" />
-      <workItem from="1461406085278" duration="2903000" />
+      <workItem from="1461406085278" duration="3584000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ConjuntoFuncionalSuite - 2016.04.23 at 12h 18m 35s.xml">
-      <configuration name="ConjuntoFuncionalSuite" configurationId="ScalaTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="ConjuntoFuncionalSuite - 2016.04.23 at 12h 24m 45s.xml">
-      <configuration name="ConjuntoFuncionalSuite" configurationId="ScalaTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="ConjuntoFuncionalSuite - 2016.04.23 at 12h 38m 45s.xml">
-      <configuration name="ConjuntoFuncionalSuite" configurationId="ScalaTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="ConjuntoFuncionalSuite - 2016.04.23 at 12h 40m 12s.xml">
-      <configuration name="ConjuntoFuncionalSuite" configurationId="ScalaTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="ConjuntoFuncionalSuite - 2016.04.23 at 12h 41m 29s.xml">
-      <configuration name="ConjuntoFuncionalSuite" configurationId="ScalaTestRunConfiguration" />
-    </history-entry>
     <history-entry file="ConjuntoFuncionalSuite - 2016.04.23 at 12h 52m 16s.xml">
       <configuration name="ConjuntoFuncionalSuite" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
@@ -729,9 +714,24 @@
     <history-entry file="ConjuntoFuncionalSuite - 2016.04.23 at 12h 59m 38s.xml">
       <configuration name="ConjuntoFuncionalSuite" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
+    <history-entry file="ConjuntoFuncionalSuite - 2016.04.23 at 13h 05m 16s.xml">
+      <configuration name="ConjuntoFuncionalSuite" configurationId="ScalaTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="ConjuntoFuncionalSuite - 2016.04.23 at 13h 05m 57s.xml">
+      <configuration name="ConjuntoFuncionalSuite" configurationId="ScalaTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="ConjuntoFuncionalSuite - 2016.04.23 at 13h 09m 41s.xml">
+      <configuration name="ConjuntoFuncionalSuite" configurationId="ScalaTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="ConjuntoFuncionalSuite - 2016.04.23 at 13h 10m 56s.xml">
+      <configuration name="ConjuntoFuncionalSuite" configurationId="ScalaTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="ConjuntoFuncionalSuite - 2016.04.23 at 13h 11m 04s.xml">
+      <configuration name="ConjuntoFuncionalSuite" configurationId="ScalaTestRunConfiguration" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7069000" />
+    <option name="totallyTimeSpent" value="7750000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1055" extended-state="6" />
@@ -792,8 +792,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/ConjuntoFuncionalSuite.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.030150754">
-          <caret line="132" column="104" selection-start-line="132" selection-start-column="104" selection-end-line="132" selection-end-column="104" />
+        <state vertical-scroll-proportion="5.276382">
+          <caret line="175" column="78" selection-start-line="175" selection-start-column="78" selection-end-line="175" selection-end-column="78" />
           <folding>
             <element signature="e#1#30#0" expanded="true" />
           </folding>

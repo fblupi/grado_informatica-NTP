@@ -127,6 +127,7 @@ class ConjuntoFuncionalSuite extends FunSuite {
     * Test de para todo
     */
   test("test de para todo") {
+    // Conjunto de mayores que 14
     val conjunto = (x: Int) => x > 14
 
     // Todos son mayores que 7
@@ -139,34 +140,40 @@ class ConjuntoFuncionalSuite extends FunSuite {
   /**
     * Test para existe
     */
-  test("Test para existe") {
-    val conjunto = (x: Int) => x < 10
+  test("test para existe") {
+    // Conjunto de múltiplos de 7
+    val conjunto = (x: Int) => x % 7 == 0
 
-    // No existe en el conjunto ningun elemento mayor de 10
-    assert(!existe(conjunto, x => x > 10))
+    // Existen pares y negativos en el conjunto
+    assert(existe(conjunto, x => x % 2 == 0), "fallo: no existen pares en el conjunto")
+    assert(existe(conjunto, x => x < 0), "fallo: no existen negativos en el conjunto")
 
-    // Si existe en el conjunto algun elemento menor de 15
-    assert(existe(conjunto, x => x < 15))
+    // No existe en el conjunto el 8
+    assert(!existe(conjunto, x => x == 8), "fallo: 8 pertenece al conjunto")
   }
 
   /**
     * Test de map
     */
-  test("Test de map") {
+  test("test de map") {
     // Definicion del conjunto
-    val conjunto = (x: Int) => x < 10
+    val conjunto = (x: Int) => x % 2 == 0
 
-    // Mapeo: sumar 25 a todos los elementos del conjunto
-    val resultado = map(conjunto, (x => x + 25))
+    // Mapeo: sumar 1 a todos los elementos del conjunto
+    val resultado = map(conjunto, (x => x + 1))
 
-    // 30 y 31 pertenecen al conjunto resultado, ya que
-    // 5 y 6 pertenecen al conjunto de partida
-    assert(contiene(resultado, 30))
-    assert(contiene(resultado, 31))
+    // El conjunto pasa de ser par a ser impar por lo que 1, 7 y 53 pertenecen
+    assert(contiene(resultado, 1), "fallo: 1 no pertenece al conjunto")
+    assert(contiene(resultado, 7), "fallo: 7 no pertenece al conjunto")
+    assert(contiene(resultado, 53), "fallo: 53 no pertenece al conjunto")
 
-    // 125 no pertenece, porque 100 no esa en el conjunto
-    // de partida
-    assert(!contiene(resultado, 125))
+    // En cambio 0, 2 y 14 no pertenecen
+    assert(!contiene(resultado, 0), "fallo: 0 pertenece al conjunto")
+    assert(!contiene(resultado, 2), "fallo: 2 pertenece al conjunto")
+    assert(!contiene(resultado, 14), "fallo: 14 pertenece al conjunto")
+
+    // En definitiva, no hay numeros pares
+    assert(!existe(resultado, (x => x % 2 == 0)), "fallo: existe un número par")
   }
 
 }
