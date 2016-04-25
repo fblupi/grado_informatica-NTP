@@ -26,6 +26,9 @@ def sumarEnterosConSum(desde: Int, hasta: Int) = sum(desde, hasta, identidad)
 def sumarCuadradosConSum(desde: Int, hasta: Int) = sum(desde, hasta, elevarCuadrado)
 def sumarPotenciasDosConSum(desde: Int, hasta: Int) = sum(desde, hasta, obtenerPotenciaDos)
 
+def sumarEnterosConSumAnonima(desde: Int, hasta: Int) = sum(desde, hasta, x => x)
+def sumarCuadradosConSumAnonima(desde: Int, hasta: Int) = sum(desde, hasta, x => x * x)
+
 println(sumarEnterosConSum(2, 5))
 println(sumarCuadradosConSum(2, 5))
 println(sumarPotenciasDosConSum(2, 5))
