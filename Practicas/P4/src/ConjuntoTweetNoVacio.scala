@@ -14,10 +14,11 @@ class ConjuntoTweetNoVacio(raiz: Tweet, izquierda: ConjuntoTweet, derecha: Conju
     * @return
     */
   def filtrar0(predicado: Tweet => Boolean, conjunto: ConjuntoTweet): ConjuntoTweet = {
-    val conjuntoNuevo = // se otiene un conjunto con el resultado parcial en la raiz
-      if (predicado(raiz) && !conjunto.contiene(raiz)) conjunto.incluir(raiz) // se incluye la raiz si cumple el pred.
-      else conjunto // es igual que el recibido si no se cumple el predicado en la raiz o ya esta incluido
-    derecha.filtrar0(predicado, izquierda.filtrar0(predicado, conjuntoNuevo)) // recursividad a la dcha. y a la izda.
+    // se obtiene un conjunto con el resultado parcial en la raiz:
+    // se incluye la raiz si cumple el predicado o es igual que el recibido si no se cumple  o ya esta incluido
+    // recursividad a la dcha. y a la izda.
+    val conjuntoNuevo = if (predicado(raiz) && !conjunto.contiene(raiz)) conjunto.incluir(raiz) else conjunto
+    derecha.filtrar0(predicado, izquierda.filtrar0(predicado, conjuntoNuevo))
   }
 
   /**
