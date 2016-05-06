@@ -40,7 +40,7 @@ class TendenciaNoVacia(mensajeInicial: Tweet, resto: Tendencia) extends Tendenci
     * @return
     */
   def length: Integer =
-    if (resto.isEmpty) 0  // Toda tendencia acaba con una tendencia vacia
+    if (resto.isEmpty) 1  // Toda tendencia acaba con una tendencia vacia
     else resto.length + 1 // Si no, aumenta el "contador"
 
   /**

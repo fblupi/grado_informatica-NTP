@@ -9,7 +9,7 @@ class ConjuntoTweetVacio extends ConjuntoTweet {
     * @param conjunto
     * @return
     */
-  def filtrar0(predicado: Tweet => Boolean, conjunto: ConjuntoTweet): ConjuntoTweet = this // devuelve un conjunto vacio
+  def filtrar0(predicado: Tweet => Boolean, conjunto: ConjuntoTweet): ConjuntoTweet = conjunto // devuelve conjunto
 
   /**
     * Metodo que devuelve la union del conjunto de tweets actual con otro

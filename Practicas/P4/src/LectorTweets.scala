@@ -63,10 +63,10 @@ object LectorTweets {
     * @param lista
     * @return
     */
-  def toTweetSet(lista: List[Tweet]): ConjuntoTweet = {
+  def toTweetSet(lista: List[Tweet]): ConjuntoTweet =
     //lista.foldLeft(new ConjuntoTweetVacio: ConjuntoTweet)(_.incluir(_))
-    lista.foldLeft(new ConjuntoTweetVacio : ConjuntoTweet)((conjunto:ConjuntoTweet, tweet:Tweet) => conjunto.incluir(tweet))
-  }
+    lista.foldLeft(new ConjuntoTweetVacio: ConjuntoTweet)((conjunto: ConjuntoTweet, tweet: Tweet) =>
+      conjunto.incluir(tweet))
 
   /**
     * Genera una cadena a partir de los objetos de la clase Tweet
@@ -111,13 +111,13 @@ object LectorTweets {
     * Se crea un diccionario asociando usuarios y lista de mensajes correspondientes
     */
   val diccionarioTweets: Map[String, List[Tweet]] =
-    Map() ++ Seq((usuarios(0) -> gizmodoTweets),
-      (usuarios(1) -> techCrunchTweets),
-      (usuarios(2) -> engadgetTweets),
-      (usuarios(3) -> amazondealsTweets),
-      (usuarios(4) -> cnetTweets),
-      (usuarios(5) -> gadgetlabTweets),
-      (usuarios(6) -> mashableTweets))
+    Map() ++ Seq(usuarios(0) -> gizmodoTweets,
+      usuarios(1) -> techCrunchTweets,
+      usuarios(2) -> engadgetTweets,
+      usuarios(3) -> amazondealsTweets,
+      usuarios(4) -> cnetTweets,
+      usuarios(5) -> gadgetlabTweets,
+      usuarios(6) -> mashableTweets)
 
   /**
     * Se crea una lista de conjuntos de tweets, uno para cada usuario
@@ -144,12 +144,12 @@ object LectorTweets {
     // produciendo la union del conjunto actual con el de la cabeza de la lista
     else unionOfAllTweetSets(listaConjuntos.tail, conjuntoActual.union(listaConjuntos.head))
 
-
   /**
     * Se almacenan aqui todos los mensajes, en forma de conjunto
     */
   val mensajes: ConjuntoTweet = unionOfAllTweetSets(conjuntosTweets, new ConjuntoTweetVacio)
 
-  // ------------------- A IMPLEMENTAR ----------------------------------
-  def obtenerConjuntoConTerminos(terminos : List[String]) : ConjuntoTweet = ???
+  def obtenerConjuntoConTerminos(terminos : List[String]) : ConjuntoTweet = {
+    mensajes.filtrar(t => t.texto.contains(terminos(1)))
+  }
 }
