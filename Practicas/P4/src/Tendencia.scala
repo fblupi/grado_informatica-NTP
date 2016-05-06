@@ -49,5 +49,5 @@ abstract class Tendencia {
     *
     * @return
     */
-  def length : Integer
+  def length: Integer
 }

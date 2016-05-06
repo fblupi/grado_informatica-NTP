@@ -20,6 +20,14 @@ class ConjuntoTweetVacio extends ConjuntoTweet {
   def union(otro: ConjuntoTweet): ConjuntoTweet = otro // devuelve el otro
 
   /**
+    * Metodo que devuelve la interseccion del conjunto de tweets actual con otro
+    *
+    * @param otro
+    * @return
+    */
+  def interseccion(otro: ConjuntoTweet) : ConjuntoTweet = this // devuelve un conjunto vacio
+
+  /**
     * Metodo para incluir un mensaje en el conjunto
     *
     * @param x

@@ -36,7 +36,7 @@ class TendenciaVacia extends Tendencia {
     *
     * @return
     */
-  def length : Integer =  0
+  def length: Integer = 0
 
   /**
     * Metodo toString

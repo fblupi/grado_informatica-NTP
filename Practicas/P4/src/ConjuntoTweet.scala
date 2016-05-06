@@ -27,10 +27,13 @@ abstract class ConjuntoTweet {
     */
   def union(otro: ConjuntoTweet): ConjuntoTweet
 
-  // ----------------------- A IMPLEMENTAR -----------------------
-  // (o dejar como abstracto para implementar en clases derivadas)
-  // -------------------------------------------------------------
-  def interseccion(otro : ConjuntoTweet) : ConjuntoTweet = ???
+  /**
+    * Metodo que devuelve la interseccion del conjunto de tweets actual con otro
+    *
+    * @param otro
+    * @return
+    */
+  def interseccion(otro: ConjuntoTweet) : ConjuntoTweet
 
   // ----------------------- A IMPLEMENTAR -----------------------
   // (o dejar como abstracto para implementar en clases derivadas)
