@@ -2,17 +2,22 @@
   * Clase abstracta para representar conjuntos de tweets
   */
 abstract class ConjuntoTweet {
+  /**
+    * Filtra los tweets si se cumple un predicado
+    *
+    * @param predicado
+    * @return
+    */
+  def filtrar(predicado: Tweet => Boolean): ConjuntoTweet = filtrar0(predicado, new ConjuntoTweetVacio)
 
-  // ----------------------- A IMPLEMENTAR -----------------------
-  // (haciendo uso del auxiliar)
-  // -------------------------------------------------------------
-  def filtrar(predicado: Tweet => Boolean): ConjuntoTweet = ???
-
-
-  // ----------------------- A IMPLEMENTAR -----------------------
-  // (o dejar como abstracto para implementar en clases derivadas)
-  // -------------------------------------------------------------
-  def filtrar0(predicado: Tweet => Boolean, conjunto: ConjuntoTweet): ConjuntoTweet = ???
+  /**
+    * Metodo auxiliar para filtrar
+    *
+    * @param predicado
+    * @param conjunto
+    * @return
+    */
+  def filtrar0(predicado: Tweet => Boolean, conjunto: ConjuntoTweet): ConjuntoTweet
 
   
   // ----------------------- A IMPLEMENTAR -----------------------
@@ -29,20 +34,16 @@ abstract class ConjuntoTweet {
   // (o dejar como abstracto para implementar en clases derivadas)
   // -------------------------------------------------------------
   def ordenacionAscendentePorRetweet: Tendencia = ??? 
-
-
+  
   // ----------------------- A IMPLEMENTAR -----------------------
   // (o dejar como abstracto para implementar en clases derivadas)
   // -------------------------------------------------------------
   def numeroMensajes: Integer = ???
 
-  // METODOS YA IMPLEMENTADOS QUE NO ES NECESARIO CAMBIAR (desde aqui al final
-  // de la descripcion de la clase)
-  // -------------------------------------------------------------------------
   /**
-    * YA IMPLEMENTADO: metodo para incluir un nuevo mensaje en el
-    * conjunto; como resultado se produce un nuevo conjunto. Este
-    * metodo es abstracto, pero estara implementado en las subclases
+    * Metodo para incluir un nuevo mensaje en el conjunto; como resultado
+    * se produce un nuevo conjunto. Este metodo es abstracto, pero estara
+    * implementado en las subclases
     *
     * @param x
     * @return

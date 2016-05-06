@@ -5,16 +5,21 @@
   * @param izquierda conjunto a la izquierda
   * @param derecha   conjunto a la derecha
   */
-class ConjuntoTweetNoVacio(raiz: Tweet, izquierda: ConjuntoTweet,
-                           derecha: ConjuntoTweet) extends ConjuntoTweet {
+class ConjuntoTweetNoVacio(raiz: Tweet, izquierda: ConjuntoTweet, derecha: ConjuntoTweet) extends ConjuntoTweet {
+  /**
+    * Metodo auxiliar para filtrar
+    *
+    * @param predicado
+    * @param conjunto
+    * @return
+    */
+  def filtrar0(predicado: Tweet => Boolean, conjunto: ConjuntoTweet): ConjuntoTweet = {
+    val conjuntoNuevo =
+      if (predicado(raiz) && !conjunto.contiene(raiz)) conjunto.incluir(raiz)
+      else conjunto
+    derecha.filtrar0(predicado, izquierda.filtrar0(predicado, conjuntoNuevo))
+  }
 
-  // ------------------- A IMPLEMENTAR ----------------------------
-  // quizas algunos de los metodos pedidos se dejen como abstractos y
-  // haya que ofrecer las implementaciones aqui
-  // -------------------------------------------------------------
-
-  // METODOS YA IMPLEMENTADOS: no cambiar
-  // -------------------------------------------------------------------------
   /**
     * Determina si el conjunto contiene un mensaje
     *
@@ -22,10 +27,10 @@ class ConjuntoTweetNoVacio(raiz: Tweet, izquierda: ConjuntoTweet,
     * @return
     */
   def contiene(mensaje: Tweet): Boolean =
-  // Si el mensaje de texto es anterior en orden lexicografico,
-  // entonces habra que buscar en la izquierda; en caso contrario,
-  // en la derecha. Si no es ni menor ni mayor, sera igual y se devuelve
-  // true
+    // Si el mensaje de texto es anterior en orden lexicografico,
+    // entonces habra que buscar en la izquierda; en caso contrario,
+    // en la derecha. Si no es ni menor ni mayor, sera igual y se devuelve
+    // true
     if (mensaje.texto < raiz.texto) izquierda.contiene(mensaje)
     else if (raiz.texto < mensaje.texto) derecha.contiene(mensaje)
     else true

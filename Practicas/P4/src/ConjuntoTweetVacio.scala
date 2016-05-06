@@ -2,14 +2,15 @@
   * Clase para representar conjuntos vacios (sin mensajes)
   */
 class ConjuntoTweetVacio extends ConjuntoTweet {
+  /**
+    * Metodo auxiliar para filtrar
+    *
+    * @param predicado
+    * @param conjunto
+    * @return
+    */
+  def filtrar0(predicado: Tweet => Boolean, conjunto: ConjuntoTweet): ConjuntoTweet = this
 
-  // ------------------- A IMPLEMENTAR ----------------------------
-  // quizas algunos de los metodos pedidos se dejen como abstractos y
-  // haya que ofrecer las implementaciones aqui
-  // -------------------------------------------------------------
-
-  // METODOS YA IMPLEMENTADOS QUE NO ES NECESARIO CAMBIAR
-  // -------------------------------------------------------------------------
   /**
     * Metodo para incluir un mensaje en el conjunto
     *
