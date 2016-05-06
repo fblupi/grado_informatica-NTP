@@ -149,10 +149,7 @@ object LectorTweets {
     */
   val mensajes: ConjuntoTweet = unionOfAllTweetSets(conjuntosTweets, new ConjuntoTweetVacio)
 
-  def obtenerConjuntoConTerminos(terminos: List[String]) : ConjuntoTweet = {
-    def obtenerConjuntoConTerminos0(terminos: List[String], contador: Int): ConjuntoTweet =
-      if (contador == terminos.length - 1) mensajes.filtrar(t => t.texto.contains(terminos(contador)))
-      else mensajes.filtrar(t => t.texto.contains(terminos(contador))).union(obtenerConjuntoConTerminos0(terminos, contador + 1))
-    obtenerConjuntoConTerminos0(terminos, 0)
-  }
+  def obtenerConjuntoConTerminos(terminos: List[String]) : ConjuntoTweet =
+    // para cada termino, filtra en los mensajes por este
+    LectorTweets.mensajes.filtrar(tweet => terminos.exists(termino => tweet.texto.contains(termino)))
 }
