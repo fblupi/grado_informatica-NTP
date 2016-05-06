@@ -39,7 +39,7 @@ object Main extends App {
   print(mensajesComunes.numeroMensajes)
   print("\n\n")
 
-  print("4. Orden de influencia de los mensajes comunes:\n"))
+  print("4. Orden de influencia de los mensajes comunes:\n")
   mensajesComunes.ordenacionAscendentePorRetweet.foreach(t => println(t))
   print("\n\n")
 
