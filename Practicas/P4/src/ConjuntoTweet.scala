@@ -19,11 +19,13 @@ abstract class ConjuntoTweet {
     */
   def filtrar0(predicado: Tweet => Boolean, conjunto: ConjuntoTweet): ConjuntoTweet
 
-  
-  // ----------------------- A IMPLEMENTAR -----------------------
-  // (o dejar como abstracto para implementar en clases derivadas)
-  // -------------------------------------------------------------
-  def union(otro: ConjuntoTweet): ConjuntoTweet = ???
+  /**
+    * Metodo que devuelve la union del conjunto de tweets actual con otro
+    *
+    * @param otro
+    * @return
+    */
+  def union(otro: ConjuntoTweet): ConjuntoTweet
 
   // ----------------------- A IMPLEMENTAR -----------------------
   // (o dejar como abstracto para implementar en clases derivadas)
@@ -34,7 +36,7 @@ abstract class ConjuntoTweet {
   // (o dejar como abstracto para implementar en clases derivadas)
   // -------------------------------------------------------------
   def ordenacionAscendentePorRetweet: Tendencia = ??? 
-  
+
   // ----------------------- A IMPLEMENTAR -----------------------
   // (o dejar como abstracto para implementar en clases derivadas)
   // -------------------------------------------------------------

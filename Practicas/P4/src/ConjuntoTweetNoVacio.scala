@@ -14,11 +14,19 @@ class ConjuntoTweetNoVacio(raiz: Tweet, izquierda: ConjuntoTweet, derecha: Conju
     * @return
     */
   def filtrar0(predicado: Tweet => Boolean, conjunto: ConjuntoTweet): ConjuntoTweet = {
-    val conjuntoNuevo =
-      if (predicado(raiz) && !conjunto.contiene(raiz)) conjunto.incluir(raiz)
-      else conjunto
-    derecha.filtrar0(predicado, izquierda.filtrar0(predicado, conjuntoNuevo))
+    val conjuntoNuevo = // se otiene un conjunto con el resultado parcial en la raiz
+      if (predicado(raiz) && !conjunto.contiene(raiz)) conjunto.incluir(raiz) // se incluye la raiz si cumple el pred.
+      else conjunto // es igual que el recibido si no se cumple el predicado en la raiz o ya esta incluido
+    derecha.filtrar0(predicado, izquierda.filtrar0(predicado, conjuntoNuevo)) // recursividad a la dcha. y a la izda.
   }
+
+  /**
+    * Metodo que devuelve la union del conjunto de tweets actual con otro
+    *
+    * @param otro
+    * @return
+    */
+  def union(otro: ConjuntoTweet): ConjuntoTweet = filtrar0(t => !otro.contiene(t), otro) // filtra para quitar comunes
 
   /**
     * Determina si el conjunto contiene un mensaje
