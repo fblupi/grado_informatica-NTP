@@ -27,7 +27,8 @@ class ConjuntoTweetNoVacio(raiz: Tweet, izquierda: ConjuntoTweet, derecha: Conju
     * @param otro
     * @return
     */
-  def union(otro: ConjuntoTweet): ConjuntoTweet = filtrar0(t => !otro.contiene(t), otro) // filtra para quitar comunes
+  def union(otro: ConjuntoTweet): ConjuntoTweet =
+    filtrar0(tweet => !otro.contiene(tweet), otro) // filtra para quitar comunes iniciando con todos los del otro
 
   /**
     * Metodo que devuelve la interseccion del conjunto de tweets actual con otro
@@ -35,7 +36,7 @@ class ConjuntoTweetNoVacio(raiz: Tweet, izquierda: ConjuntoTweet, derecha: Conju
     * @param otro
     * @return
     */
-  def interseccion(otro: ConjuntoTweet) : ConjuntoTweet = filtrar0(t => otro.contiene(t), otro) // filtra con comunes
+  def interseccion(otro: ConjuntoTweet) : ConjuntoTweet = filtrar(tweet => otro.contiene(tweet)) // filtra con comunes
 
   /**
     * Metodo con el numero de tuits del conjunto
