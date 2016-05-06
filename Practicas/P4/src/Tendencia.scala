@@ -1,4 +1,3 @@
-
 /**
   * Clase para proporcionar una secuencia lineal de mensajes
   */
@@ -45,13 +44,10 @@ abstract class Tendencia {
     }
   }
 
-  // -------------------------- A IMPLEMENTAR --------------------
-  // (o dejar como abstracto)
-  // -------------------------------------------------------------
   /**
     * Longitud de la tendencia
     *
     * @return
     */
-  def length : Integer =  ???
+  def length : Integer
 }

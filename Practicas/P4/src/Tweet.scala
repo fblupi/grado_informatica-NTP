@@ -1,4 +1,3 @@
-
 /**
   * Clase para representar tweets
   *
@@ -7,7 +6,6 @@
   * @param retweets
   */
 class Tweet(val usuario: String, val texto: String, val retweets: Int) {
-
   /**
     * Sebrescritura del metodo toString
     * @return

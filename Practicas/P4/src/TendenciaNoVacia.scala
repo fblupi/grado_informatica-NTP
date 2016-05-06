@@ -1,4 +1,3 @@
-
 /**
   * Clase para representar colecciones no vacias
   *
@@ -6,21 +5,13 @@
   * @param resto
   */
 class TendenciaNoVacia(mensajeInicial: Tweet, resto: Tendencia) extends Tendencia {
-
-  // ------------------- A IMPLEMENTAR ----------------------------
-  // quizas algunos de los metodos pedidos se dejen como abstractos y
-  // haya que ofrecer las implementaciones aqui (length)
-  // -------------------------------------------------------------
-
-  // ---------------------- YA IMPLEMENTADOS ----------------------
   /**
     * Se agrega mensaje al final de la secuencia
     *
     * @param mensaje
     * @return
     */
-  def +(mensaje: Tweet): Tendencia =
-    new TendenciaNoVacia(mensajeInicial, resto + mensaje)
+  def +(mensaje: Tweet): Tendencia = new TendenciaNoVacia(mensajeInicial, resto + mensaje)
 
   /**
     * Devuelve el mensaje inicial
@@ -42,6 +33,15 @@ class TendenciaNoVacia(mensajeInicial: Tweet, resto: Tendencia) extends Tendenci
     * @return
     */
   def isEmpty: Boolean = false
+
+  /**
+    * Longitud de la tendencia
+    *
+    * @return
+    */
+  def length : Integer =
+    if (resto.isEmpty) 0  // Toda tendencia acaba con una tendencia vacia
+    else resto.length + 1 // Si no, aumenta el "contador"
 
   /**
     * Metodo toString

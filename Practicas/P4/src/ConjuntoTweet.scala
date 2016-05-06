@@ -1,4 +1,3 @@
-
 /**
   * Clase abstracta para representar conjuntos de tweets
   */

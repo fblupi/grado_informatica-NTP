@@ -1,4 +1,3 @@
-
 /**
   * Clase para representar conjuntos vacios (sin mensajes)
   */

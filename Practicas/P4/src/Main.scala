@@ -1,4 +1,3 @@
-
 /**
   * Clase de utilidad para representar conjuntos de tweets con temas de
   * google y apple, junto con un objeto de la clase Tendencia con todos
