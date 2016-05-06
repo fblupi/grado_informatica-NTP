@@ -38,12 +38,14 @@ abstract class ConjuntoTweet {
   // ----------------------- A IMPLEMENTAR -----------------------
   // (o dejar como abstracto para implementar en clases derivadas)
   // -------------------------------------------------------------
-  def ordenacionAscendentePorRetweet: Tendencia = ??? 
+  def ordenacionAscendentePorRetweet: Tendencia = ???
 
-  // ----------------------- A IMPLEMENTAR -----------------------
-  // (o dejar como abstracto para implementar en clases derivadas)
-  // -------------------------------------------------------------
-  def numeroMensajes: Integer = ???
+  /**
+    * Metodo con el numero de tuits del conjunto
+    *
+    * @return
+    */
+  def numeroMensajes: Integer
 
   /**
     * Metodo para incluir un nuevo mensaje en el conjunto; como resultado

@@ -28,6 +28,13 @@ class ConjuntoTweetVacio extends ConjuntoTweet {
   def interseccion(otro: ConjuntoTweet) : ConjuntoTweet = this // devuelve un conjunto vacio
 
   /**
+    * Metodo con el numero de tuits del conjunto
+    *
+    * @return
+    */
+  def numeroMensajes: Integer = 0
+
+  /**
     * Metodo para incluir un mensaje en el conjunto
     *
     * @param x

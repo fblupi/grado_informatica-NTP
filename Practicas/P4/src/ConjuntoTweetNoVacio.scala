@@ -37,6 +37,13 @@ class ConjuntoTweetNoVacio(raiz: Tweet, izquierda: ConjuntoTweet, derecha: Conju
   def interseccion(otro: ConjuntoTweet) : ConjuntoTweet = filtrar0(t => otro.contiene(t), otro) // filtra con comunes
 
   /**
+    * Metodo con el numero de tuits del conjunto
+    *
+    * @return
+    */
+  def numeroMensajes: Integer = 1 + izquierda.numeroMensajes + derecha.numeroMensajes // recursividad a los lados y suma
+
+  /**
     * Determina si el conjunto contiene un mensaje
     *
     * @param mensaje
