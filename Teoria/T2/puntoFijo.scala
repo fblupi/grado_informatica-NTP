@@ -17,6 +17,9 @@ def puntoFijo(funcion: Double => Double)(inicio: Double): Double = {
   iterar(inicio)
 }
 
-def raizCuadrada(x: Double) = puntoFijo(y => (y + x / y) / 2)(1.0)
+def promediarMuestras(funcion: Double => Double)(valor: Double) =
+  (valor + funcion(valor)) / 2
+
+def raizCuadrada(x: Double) = puntoFijo(promediarMuestras(y => x / y))(1.0)
 
 println(raizCuadrada(144))
