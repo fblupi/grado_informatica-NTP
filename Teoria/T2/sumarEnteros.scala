@@ -29,6 +29,25 @@ def sumarPotenciasDosConSum(desde: Int, hasta: Int) = sum(desde, hasta, obtenerP
 def sumarEnterosConSumAnonima(desde: Int, hasta: Int) = sum(desde, hasta, x => x)
 def sumarCuadradosConSumAnonima(desde: Int, hasta: Int) = sum(desde, hasta, x => x * x)
 
-println(sumarEnterosConSum(2, 5))
-println(sumarCuadradosConSum(2, 5))
-println(sumarPotenciasDosConSum(2, 5))
+// -----------------------------------------------------------------------------
+
+/**
+  * Función equivalente a sum pero ahorrando los parámetros desde y hasta
+  */
+def sumar(f: Int => Int): (Int, Int) => Int = {
+  def sumar0(desde: Int, hasta: Int): Int =
+    if (desde > hasta) 0
+    else f(desde) + sumar0(desde + 1, hasta)
+  sumar0 // devolución de sumar
+}
+
+def sumarEnteros2 = sumar(x => x)
+def sumarCuadrados2 = sumar(x => x * x)
+def sumarPotenciasDos2 = sumar(obtenerPotenciaDos)
+
+println(sumarEnteros2(2, 5))
+println(sumar(x => x)(2, 5)) // Currying
+println(sumarCuadrados2(2, 5))
+println(sumar(x => x * x)(2, 5)) // Currying
+println(sumarPotenciasDos2(2, 5))
+println(sumar(obtenerPotenciaDos)(2, 5)) // Currying
