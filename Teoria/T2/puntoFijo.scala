@@ -3,7 +3,7 @@
 
 import math.abs
 
-val tolerancia = 0.000001
+val tolerancia = 1e-10
 
 def estaBienAproximado(valor: Double, siguiente: Double): Boolean =
   abs((valor - siguiente) / valor) < tolerancia
@@ -17,6 +17,6 @@ def puntoFijo(funcion: Double => Double)(inicio: Double): Double = {
   iterar(inicio)
 }
 
-def raizCuadrada(x: Double) = puntoFijo(y => x / y)(1.0)
+def raizCuadrada(x: Double) = puntoFijo(y => (y + x / y) / 2)(1.0)
 
-println(raizCuadrada(4))
+println(raizCuadrada(144))
