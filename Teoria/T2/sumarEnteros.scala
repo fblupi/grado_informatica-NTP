@@ -41,13 +41,21 @@ def sumar(f: Int => Int): (Int, Int) => Int = {
   sumar0 // devolución de sumar
 }
 
+def sumarCurrying (f: Int => Int)(desde: Int, hasta: Int): Int = {
+  if (desde > hasta) 0
+  else f(desde) + sumarCurrying(f)(desde + 1, hasta)
+}
+
 def sumarEnteros2 = sumar(x => x)
 def sumarCuadrados2 = sumar(x => x * x)
 def sumarPotenciasDos2 = sumar(obtenerPotenciaDos)
 
 println(sumarEnteros2(2, 5))
 println(sumar(x => x)(2, 5)) // Currying
+println(sumarCurrying(x => x)(2, 5)) // Currying más puro
 println(sumarCuadrados2(2, 5))
 println(sumar(x => x * x)(2, 5)) // Currying
+println(sumarCurrying(x => x * x)(2, 5)) // Currying más puro
 println(sumarPotenciasDos2(2, 5))
 println(sumar(obtenerPotenciaDos)(2, 5)) // Currying
+println(sumarCurrying(obtenerPotenciaDos)(2, 5)) // Currying más puro
