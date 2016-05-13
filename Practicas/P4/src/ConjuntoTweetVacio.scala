@@ -3,6 +3,14 @@
   */
 class ConjuntoTweetVacio extends ConjuntoTweet {
   /**
+    * Filtra los tweets si se cumple un predicado
+    *
+    * @param predicado
+    * @return
+    */
+  def filtrar(predicado: Tweet => Boolean): ConjuntoTweet = filtrar0(predicado, new ConjuntoTweetVacio)
+
+  /**
     * Metodo auxiliar para filtrar
     *
     * @param predicado

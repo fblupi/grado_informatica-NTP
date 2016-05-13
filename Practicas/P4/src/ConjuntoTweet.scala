@@ -8,7 +8,7 @@ abstract class ConjuntoTweet {
     * @param predicado
     * @return
     */
-  def filtrar(predicado: Tweet => Boolean): ConjuntoTweet = filtrar0(predicado, new ConjuntoTweetVacio)
+  def filtrar(predicado: Tweet => Boolean): ConjuntoTweet
 
   /**
     * Metodo auxiliar para filtrar

@@ -151,5 +151,5 @@ object LectorTweets {
 
   def obtenerConjuntoConTerminos(terminos: List[String]) : ConjuntoTweet =
     // para cada termino, filtra en los mensajes por este
-    LectorTweets.mensajes.filtrar(tweet => terminos.exists(termino => tweet.texto.contains(termino)))
+    mensajes.filtrar(tweet => terminos.exists(termino => tweet.texto.contains(termino)))
 }
