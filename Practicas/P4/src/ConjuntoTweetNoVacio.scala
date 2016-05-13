@@ -29,6 +29,12 @@ class ConjuntoTweetNoVacio(raiz: Tweet, izquierda: ConjuntoTweet, derecha: Conju
     */
   def union(otro: ConjuntoTweet): ConjuntoTweet =
     filtrar0(tweet => !otro.contiene(tweet), otro) // filtra para quitar comunes iniciando con todos los del otro
+    // ALTERNATIVA:
+    //if (otro.estaVacio) this              // otro vacio: devolver this
+    //else if (!contiene(otro.head)) {      // this no contiene mensaje cabeza:
+    //  val nuevo = this.incluir(otro.head) // nuevo <- incluir mensaje de cabeza en this
+    //  nuevo.union(otro.tail)              // realizar union de nuevo con resto de mensajes de otro
+    //} else union(otro.tail)               // en caso contrario: union de this con resto de mensajes de otro
 
   /**
     * Metodo que devuelve la interseccion del conjunto de tweets actual con otro
