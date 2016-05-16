@@ -38,10 +38,10 @@ val obj1 = new Racional(2, 3)
 val obj2 = new Racional(4, 2)
 val obj3 = obj1 + obj2
 val obj4 = new Racional(2, 3)
-obj1.equals(obj4)
-obj1.equals(obj2)
-obj1 < obj2
-obj2 < obj1
+println(obj1.equals(obj4))
+println(obj1.equals(obj2))
+println(obj1 < obj2)
+println(obj2 < obj1)
 val obj5 = obj1.max(obj2)
 val obj6 = obj2.max(obj1)
 val obj7 = new Racional(4)
