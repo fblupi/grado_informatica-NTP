@@ -35,4 +35,21 @@ object PruebaCambiosApilables extends App {
   cola1.put(0)
   cola1.put(1)
   println("Cola con incremento y filtrado y -1, 0, y 1 extraemos " + cola1.get())
+
+  // Incrementar        Filtrar negativos
+  // super(x+1)         (x>=0) super(x)
+  //
+  // put(-1) ----- X
+  // put(0)  ----- super(0) ----- super(0+1) ----- put(1)
+  // put(1)  ----- super(1) ----- super(1+1) ----- put(2)
+
+  // El orden es importante, porque el resultado variaría:
+  //
+  // Filtrar negativos  Incrementar
+  // (x>=0) super(x)    super(x+1)
+  //
+  // put(-1) ----- super(-1+1) ----- super(0) ----- put(0)
+  // put(0)  ----- super(0+1)  ----- super(1) ----- put(1)
+  // put(1)  ----- super(1+1)  ----- super(2) ----- put(2)
+
 }
