@@ -1,1 +1,1 @@
-case class NodoHoja(val caracter: Char, val peso: Integer) extends Nodo
+case class NodoHoja(val caracter: Char, val peso: Int) extends Nodo

@@ -1,4 +1,6 @@
 object Huffman {
+  type TablaCodigo = List[(Char, List[Int])]
+
   /**
     * Recibe como argumento un nodo y devuelve el peso asociado calculando los pesos de los nodos inferiores, desde las
     * hojas hasta sus hijos
@@ -6,7 +8,7 @@ object Huffman {
     * @param nodo
     * @return
     */
-  def calcularPeso(nodo: Nodo) : Integer = nodo match {
+  def calcularPeso(nodo: Nodo) : Int = nodo match {
     case NodoHoja(_, peso) => peso
     case NodoIntermedio(nodoIzda, nodoDcha, _, _) => calcularPeso(nodoIzda) + calcularPeso(nodoDcha)
   }
@@ -48,7 +50,7 @@ object Huffman {
     * @param caracteres
     * @return
     */
-  def obtenerTuplasOcurrencias(caracteres: List[Char]) : List[(Char, Integer)] = ???
+  def obtenerTuplasOcurrencias(caracteres: List[Char]) : List[(Char, Int)] = ???
 
   /**
     * Genera una lista con toidos los nodos hoja del árbol de codificación. Esta lista de nodos terminales está
@@ -57,7 +59,7 @@ object Huffman {
     * @param ocurrencias
     * @return
     */
-  def generarListHojasOrdenadas(ocurrencias: List[(Char, Integer)]) : List[NodoHoja] = ???
+  def generarListHojasOrdenadas(ocurrencias: List[(Char, Int)]) : List[NodoHoja] = ???
 
   /**
     * Comprueba si una lista de nodos contiene un único elemento
@@ -84,4 +86,48 @@ object Huffman {
     * @return
     */
   def stringAListaCaracteres(cadena: String) :List[Char] = cadena.toList
+
+  /**
+    * Codifica un texto siguiendo un código Huffman
+    *
+    * @param arbol
+    * @param texto
+    * @return
+    */
+  def codificar(arbol: Nodo, texto: List[Char]) : List[Int] = ???
+
+  /**
+    * Decodifica un texto siguiendo un código Huffman
+    *
+    * @param arbol
+    * @param texto
+    * @return
+    */
+  def decodificar(arbol: Nodo, texto: List[Int]) : List[Char] = ???
+
+  /**
+    * Codifica un texto siguiendo un código Huffman usando una tabla para no tener que recorrer el árbol
+    *
+    * @param tabla
+    * @param caracter
+    * @return
+    */
+  def codificarConTabla(tabla: TablaCodigo)(caracter: Char) : List[Int] = ???
+
+  /**
+    * Crear tabla visitando el arbol de codificación
+    *
+    * @param arbolCodificacion
+    * @return
+    */
+  def convertirArbolTabla(arbolCodificacion: Nodo) : TablaCodigo = ???
+
+  /**
+    * Codifica un texto siguiendo un código Huffman usando una tabla para no tener que recorrer el árbol
+    *
+    * @param arbol
+    * @param texto
+    * @return
+    */
+  def codificacionRapida(arbol: Nodo)(texto: List[Char]) : List[Int] = ???
 }
