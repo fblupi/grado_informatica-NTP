@@ -2,6 +2,14 @@ object Huffman {
   type TablaCodigo = List[(Char, List[Int])]
 
   /**
+    * Pasar de cadena de texto normal a lista de caracteres
+    *
+    * @param cadena
+    * @return
+    */
+  def stringAListaCaracteres(cadena: String) :List[Char] = cadena.toList
+
+  /**
     * Recibe como argumento un nodo y devuelve el peso asociado calculando los pesos de los nodos inferiores, desde las
     * hojas hasta sus hijos
     *
@@ -43,7 +51,8 @@ object Huffman {
     * @return
     */
   def generarArbolCodificacion(texto: List[Char]) : Nodo =
-    hasta(singleton, combinar)(generarListHojasOrdenadas(obtenerTuplasOcurrencias(texto))).head
+    hasta(singleton, combinar)(generarListHojasOrdenadas(obtenerTuplasOcurrencias(texto)))  // llamada a hasta sobre el texto
+      .head                                                                                 // obtiene el primer (y único) elemento
 
   /**
     * Calcula la frecuencia de aparición de cada carácter en el texto a analizar
@@ -74,7 +83,7 @@ object Huffman {
     * @param nodos
     * @return
     */
-  def singleton(nodos: List[Nodo]) : Boolean = nodos.size == 1
+  def singleton(nodos: List[Nodo]) : Boolean = nodos.size == 1  // comprueba que solo hay un nodo
 
   /**
     * Combina todos los nodos terminales
@@ -101,16 +110,8 @@ object Huffman {
     * @return
     */
   def hasta(pred: List[Nodo] => Boolean, func: List[Nodo] => List[Nodo])(nodos: List[Nodo]) : List[Nodo] =
-    if (pred(nodos)) nodos
-    else hasta(pred, func)(func(nodos))
-
-  /**
-    * Pasar de cadena de texto normal a lista de caracteres
-    *
-    * @param cadena
-    * @return
-    */
-  def stringAListaCaracteres(cadena: String) :List[Char] = cadena.toList
+    if (pred(nodos)) nodos              // solo queda un elemento
+    else hasta(pred, func)(func(nodos)) // llamada recursiva sobre la combinación en los nodos actuales
 
   /**
     * Codifica un texto siguiendo un código Huffman
@@ -121,11 +122,11 @@ object Huffman {
     */
   def codificar(arbol: Nodo, texto: List[Char]) : List[Int] = {
     def codificar0(nodo: Nodo, texto: List[Char]) : List[Int] =
-      nodo match {                                                                        // Nodo actual
-        case NodoHoja(_, _) =>                                                            // Es Nodo Hoja
+      nodo match {                                                                        // nodo actual
+        case NodoHoja(_, _) =>                                                            // es nodo hoja
           if (texto.tail.isEmpty) List()                                                  // último caracter => criterio de parada
           else codificar0(arbol, texto.tail)                                              // no último caracter => continúa con el siguiente carácter
-        case NodoIntermedio(izda, dcha, caracteres, _) =>                                 // Es Nodo Intermedio
+        case NodoIntermedio(izda, dcha, caracteres, _) =>                                 // es nodo intermedio
           if (obtenerCaracteres(izda).contains(texto.head)) 0 :: codificar0(izda, texto)  // el carácter está a la izquierda => añade un 0
           else 1 :: codificar0(dcha, texto)                                               // el carácter está a la derecha => añade un 1
       }
@@ -141,11 +142,11 @@ object Huffman {
     */
   def decodificar(arbol: Nodo, textoCodificado: List[Int]) : List[Char] = {
     def decodificar0(nodo: Nodo, textoCodificado: List[Int]) : List[Char] =
-      nodo match {                                                                // Nodo actual
-        case NodoHoja(caracter, _) =>                                             // Es Nodo Hoja
+      nodo match {                                                                // nodo actual
+        case NodoHoja(caracter, _) =>                                             // es nodo hoja
           if (textoCodificado.isEmpty) List(caracter)                             // último bit => criterio de parada
           else caracter :: decodificar0(arbol, textoCodificado)                   // no último bit => guarda el caracter y continúa
-        case NodoIntermedio(izda, dcha, _, _) =>                                  // Es Nodo Intermedio
+        case NodoIntermedio(izda, dcha, _, _) =>                                  // es nodo intermedio
           if (textoCodificado.head == 0) decodificar0(izda, textoCodificado.tail) // bit == 0 => recursividad por la izda con el resto de bits
           else  decodificar0(dcha, textoCodificado.tail)                          // bit == 1 => recursividad por la dcha con el resto de bits
       }
@@ -161,8 +162,8 @@ object Huffman {
     */
   def codificarConTabla(tabla: TablaCodigo)(caracter: Char) : List[Int] =
     tabla
-      .filter(codigo => codigo._1 == caracter)  // Filtra para buscar la entrada con el carácter
-      .head._2                                  // Devuelve el carácter encriptado
+      .filter(codigo => codigo._1 == caracter)  // filtra para buscar la entrada con el carácter
+      .head._2                                  // devuelve el carácter encriptado
 
   /**
     * Crear tabla visitando el arbol de codificación
@@ -180,8 +181,8 @@ object Huffman {
     * @return
     */
   def codificacionRapida(arbol: Nodo)(texto: List[Char]) : List[Int] = {
-    val tablaCodigo = convertirArbolTabla(arbol)                            // Crea la tabla a partir del árbol
-    (for(caracter <- texto) yield codificarConTabla(tablaCodigo)(caracter)) // Obtiene lista para cada caracter del texto
-      .flatten                                                              // Convierte a List[Int]
+    val tablaCodigo = convertirArbolTabla(arbol)                            // crea la tabla a partir del árbol
+    (for(caracter <- texto) yield codificarConTabla(tablaCodigo)(caracter)) // obtiene lista para cada caracter del texto
+      .flatten                                                              // convierte a List[Int]
   }
 }
