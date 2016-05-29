@@ -87,7 +87,10 @@ object Huffman {
     * @param nodos
     * @return
     */
-  def combinar(nodos: List[Nodo]) : List[Nodo] = ???
+  def combinar(nodos: List[Nodo]) : List[Nodo] = {
+    (generarArbol(nodos.head, nodos.tail.head) :: nodos.tail.tail)            // inserta nodo intermedio al principio
+      .sortWith((nodo1, nodo2) => calcularPeso(nodo1) < calcularPeso(nodo2))  // ordena la lista
+  }
 
   /**
     * Hace llamadas a las funciones definidas en pasos anteriores hasta que la lista de nodos contenga un único elemento
