@@ -70,7 +70,7 @@ object Huffman {
     * @param nodos
     * @return
     */
-  def singleton(nodos: List[Nodo]) : Boolean = ???
+  def singleton(nodos: List[Nodo]) : Boolean = nodos.size == 1
 
   /**
     * Combina todos los nodos terminales
