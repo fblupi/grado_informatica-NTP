@@ -36,8 +36,8 @@
       <file leaf-file-name="Huffman.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Huffman.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5798226">
-              <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.26053214">
+              <caret line="88" column="52" selection-start-line="88" selection-start-column="49" selection-end-line="88" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -693,12 +693,12 @@
       <workItem from="1464267173788" duration="1003000" />
       <workItem from="1464423402622" duration="2762000" />
       <workItem from="1464426186189" duration="2943000" />
-      <workItem from="1464507746506" duration="3734000" />
+      <workItem from="1464507746506" duration="4433000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10442000" />
+    <option name="totallyTimeSpent" value="11141000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1053" extended-state="6" />
@@ -878,8 +878,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Huffman.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5798226">
-          <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.26053214">
+          <caret line="88" column="52" selection-start-line="88" selection-start-column="49" selection-end-line="88" selection-end-column="52" />
           <folding />
         </state>
       </provider>

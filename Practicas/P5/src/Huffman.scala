@@ -96,7 +96,9 @@ object Huffman {
     * @param nodos
     * @return
     */
-  def hasta(pred: List[Nodo] => Boolean, func: List[Nodo] => List[Nodo])(nodos: List[Nodo]) : List[Nodo] = ???
+  def hasta(pred: List[Nodo] => Boolean, func: List[Nodo] => List[Nodo])(nodos: List[Nodo]) : List[Nodo] =
+    if (pred(nodos)) nodos
+    else hasta(pred, func)(func(nodos))
 
   /**
     * Pasar de cadena de texto normal a lista de caracteres
