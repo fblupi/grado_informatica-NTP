@@ -39,10 +39,11 @@ object Huffman {
   /**
     * Dado un texto, calcula y construye un árbol de codificación analizando sus caracteres y contadores de ocurrencia
     *
-    * @param caracteres
+    * @param texto
     * @return
     */
-  def generarArbolCodificacion(caracteres: List[Char]) : Nodo = ???
+  def generarArbolCodificacion(texto: List[Char]) : Nodo =
+    hasta(singleton, combinar)(generarListHojasOrdenadas(obtenerTuplasOcurrencias(texto))).head
 
   /**
     * Calcula la frecuencia de aparición de cada carácter en el texto a analizar
