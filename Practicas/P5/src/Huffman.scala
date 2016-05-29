@@ -159,7 +159,10 @@ object Huffman {
     * @param caracter
     * @return
     */
-  def codificarConTabla(tabla: TablaCodigo)(caracter: Char) : List[Int] = ???
+  def codificarConTabla(tabla: TablaCodigo)(caracter: Char) : List[Int] =
+    tabla
+      .filter(codigo => codigo._1 == caracter)  // Filtra para buscar la entrada con el carácter
+      .head._2                                  // Devuelve el carácter encriptado
 
   /**
     * Crear tabla visitando el arbol de codificación
