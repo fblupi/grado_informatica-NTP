@@ -59,7 +59,10 @@ object Huffman {
     * @param ocurrencias
     * @return
     */
-  def generarListHojasOrdenadas(ocurrencias: List[(Char, Int)]) : List[NodoHoja] = ???
+  def generarListHojasOrdenadas(ocurrencias: List[(Char, Int)]) : List[NodoHoja] =
+    ocurrencias
+      .sortWith((ocurr1, ocurr2) => ocurr1._2 < ocurr2._2)  // ordena de forma ascendente por peso
+      .map(ocurr => NodoHoja(ocurr._1, ocurr._2))           // mapea el resultado en una lista de nodos hoja
 
   /**
     * Comprueba si una lista de nodos contiene un único elemento
