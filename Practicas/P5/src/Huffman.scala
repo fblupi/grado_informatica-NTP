@@ -171,7 +171,16 @@ object Huffman {
     * @param arbol
     * @return
     */
-  def convertirArbolTabla(arbol: Nodo) : TablaCodigo = ???
+  def convertirArbolTabla(arbol: Nodo) : TablaCodigo = {
+    def convertirArbolTabla0(nodo: Nodo, lista: List[Int]) : TablaCodigo = {
+      nodo match {                                                                          // nodo actual
+        case NodoHoja(caracter, _) => List((caracter, lista))                               // es nodo hoja => devuelve el caracter con la lista hasta llegar a él
+        case NodoIntermedio(izda, dcha, _, _) =>                                            // es nodo intermedio => recursividad a izda y dcha agregando un 0 y 1
+          convertirArbolTabla0(izda, lista :+ 0) ::: convertirArbolTabla0(dcha, lista :+ 1) //                       a la lista respectivamente
+      }
+    }
+    convertirArbolTabla0(arbol, List()) // comienza con el arbol completo y una lista vacía
+  }
 
   /**
     * Codifica un texto siguiendo un código Huffman usando una tabla para no tener que recorrer el árbol
@@ -183,6 +192,6 @@ object Huffman {
   def codificacionRapida(arbol: Nodo)(texto: List[Char]) : List[Int] = {
     val tablaCodigo = convertirArbolTabla(arbol)                            // crea la tabla a partir del árbol
     (for(caracter <- texto) yield codificarConTabla(tablaCodigo)(caracter)) // obtiene lista para cada caracter del texto
-      .flatten                                                              // convierte a List[Int]
+      .flatten                                                              // convierte el List[List[Int]] a List[Int]
   }
 }

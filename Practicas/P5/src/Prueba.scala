@@ -99,9 +99,7 @@ object Prueba extends App {
 
   // Se intenta lo mismo con la tabla
   val codificacionTabla = codificacionRapida(codigoHuffmanFrances)(mensajeDecodificado)
-  val mensajeCodificado = codificar(codigoHuffmanFrances, mensajeDecodificado)
 
   // Debe ser igual a mensajeSecreto
   println(mensajeSecreto == codificacionTabla)
-  println(mensajeSecreto == mensajeCodificado)
 }
