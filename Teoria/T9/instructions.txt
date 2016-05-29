@@ -1,0 +1,2 @@
+scalac Elemento.scala Espiral.scala
+scala Espiral <tama>
