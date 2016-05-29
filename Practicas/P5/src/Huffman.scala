@@ -180,9 +180,8 @@ object Huffman {
     * @return
     */
   def codificacionRapida(arbol: Nodo)(texto: List[Char]) : List[Int] = {
-    val tablaCodigo = convertirArbolTabla(arbol)
-    val resultado = List()
-    texto.foreach(caracter => codificarConTabla(tablaCodigo) :: resultado)
-    resultado.reverse
+    val tablaCodigo = convertirArbolTabla(arbol)                            // Crea la tabla a partir del árbol
+    (for(caracter <- texto) yield codificarConTabla(tablaCodigo)(caracter)) // Obtiene lista para cada caracter del texto
+      .flatten                                                              // Convierte a List[Int]
   }
 }
