@@ -77,13 +77,26 @@ object Huffman {
 
   /**
     * Combina todos los nodos terminales
+    * Pasos:
+    *  - elimina de la lista de nodos los dos con menos peso (n-2)
+    *  - los combina para formar un nodo intermedio con ellos
+    *  - inserta ese nodo en la lista de nodos a combinar insertando de forma que se preserve el orden (n-1)
+    *  - función hasta
     *
     * @param nodos
     * @return
     */
   def combinar(nodos: List[Nodo]) : List[Nodo] = ???
 
-  def hasta = ???
+  /**
+    * Hace llamadas a las funciones definidas en pasos anteriores hasta que la lista de nodos contenga un único elemento
+    *
+    * @param pred
+    * @param func
+    * @param nodos
+    * @return
+    */
+  def hasta(pred: List[Nodo] => Boolean, func: List[Nodo] => List[Nodo])(nodos: List[Nodo]) : List[Nodo] = ???
 
   /**
     * Pasar de cadena de texto normal a lista de caracteres
