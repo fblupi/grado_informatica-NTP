@@ -47,10 +47,13 @@ object Huffman {
   /**
     * Calcula la frecuencia de aparición de cada carácter en el texto a analizar
     *
-    * @param caracteres
+    * @param texto
     * @return
     */
-  def obtenerTuplasOcurrencias(caracteres: List[Char]) : List[(Char, Int)] = ???
+  def obtenerTuplasOcurrencias(texto: List[Char]) : List[(Char, Int)] =
+    texto
+      .map(char => (char, texto.count(otherChar => otherChar == char))) // para cada elemento mapea con sus ocurrencias
+      .distinct                                                         // elimina repetidos
 
   /**
     * Genera una lista con toidos los nodos hoja del árbol de codificación. Esta lista de nodos terminales está
