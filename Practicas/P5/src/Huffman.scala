@@ -167,10 +167,10 @@ object Huffman {
   /**
     * Crear tabla visitando el arbol de codificación
     *
-    * @param arbolCodificacion
+    * @param arbol
     * @return
     */
-  def convertirArbolTabla(arbolCodificacion: Nodo) : TablaCodigo = ???
+  def convertirArbolTabla(arbol: Nodo) : TablaCodigo = ???
 
   /**
     * Codifica un texto siguiendo un código Huffman usando una tabla para no tener que recorrer el árbol
@@ -179,5 +179,10 @@ object Huffman {
     * @param texto
     * @return
     */
-  def codificacionRapida(arbol: Nodo)(texto: List[Char]) : List[Int] = ???
+  def codificacionRapida(arbol: Nodo)(texto: List[Char]) : List[Int] = {
+    val tablaCodigo = convertirArbolTabla(arbol)
+    val resultado = List()
+    texto.foreach(caracter => codificarConTabla(tablaCodigo) :: resultado)
+    resultado.reverse
+  }
 }
