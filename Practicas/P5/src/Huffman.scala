@@ -125,10 +125,21 @@ object Huffman {
     * Decodifica un texto siguiendo un código Huffman
     *
     * @param arbol
-    * @param texto
+    * @param textoCodificado
     * @return
     */
-  def decodificar(arbol: Nodo, texto: List[Int]) : List[Char] = ???
+  def decodificar(arbol: Nodo, textoCodificado: List[Int]) : List[Char] = {
+    def decodificar0(nodo: Nodo, textoCodificado: List[Int]) : List[Char] =
+      nodo match {                                                                // Nodo actual
+        case NodoHoja(caracter, _) =>                                             // Es Nodo hoja
+          if (textoCodificado.isEmpty) List(caracter)                             // último bit => criterio de parada
+          else caracter :: decodificar0(arbol, textoCodificado)                   // no último bit => guarda el caracter y continúa
+        case NodoIntermedio(izda, dcha, _, _) =>                                  // Es Nodo Intermedio
+          if (textoCodificado.head == 0) decodificar0(izda, textoCodificado.tail) // bit == 0 => recursividad por la izda con el resto de bits
+          else  decodificar0(dcha, textoCodificado.tail)                          // bit == 1 => recursividad por la dcha con el resto de bits
+      }
+    decodificar0(arbol, textoCodificado) // comienza desde la raiz con el texto codificado completo
+  }
 
   /**
     * Codifica un texto siguiendo un código Huffman usando una tabla para no tener que recorrer el árbol
