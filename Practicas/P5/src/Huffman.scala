@@ -7,7 +7,7 @@ object Huffman {
     * @param cadena
     * @return
     */
-  def stringAListaCaracteres(cadena: String) :List[Char] = cadena.toList
+  def stringAListaCaracteres(cadena: String): List[Char] = cadena.toList
 
   /**
     * Recibe como argumento un nodo y devuelve el peso asociado calculando los pesos de los nodos inferiores, desde las
@@ -16,7 +16,7 @@ object Huffman {
     * @param nodo
     * @return
     */
-  def calcularPeso(nodo: Nodo) : Int = nodo match {
+  def calcularPeso(nodo: Nodo): Int = nodo match {
     case NodoHoja(_, peso) => peso
     case NodoIntermedio(nodoIzda, nodoDcha, _, _) => calcularPeso(nodoIzda) + calcularPeso(nodoDcha)
   }
@@ -28,7 +28,7 @@ object Huffman {
     * @param nodo
     * @return
     */
-  def obtenerCaracteres(nodo: Nodo) : List[Char] = nodo match {
+  def obtenerCaracteres(nodo: Nodo): List[Char] = nodo match {
     case NodoHoja(caracter, _) => List(caracter)
     case NodoIntermedio(nodoIzda, nodoDcha, _, _) => obtenerCaracteres(nodoIzda) ::: obtenerCaracteres(nodoDcha)
   }
@@ -50,7 +50,7 @@ object Huffman {
     * @param texto
     * @return
     */
-  def generarArbolCodificacion(texto: List[Char]) : Nodo =
+  def generarArbolCodificacion(texto: List[Char]): Nodo =
     hasta(singleton, combinar)(generarListHojasOrdenadas(obtenerTuplasOcurrencias(texto)))  // llamada a hasta sobre el texto
       .head                                                                                 // obtiene el primer (y único) elemento
 
@@ -60,7 +60,7 @@ object Huffman {
     * @param texto
     * @return
     */
-  def obtenerTuplasOcurrencias(texto: List[Char]) : List[(Char, Int)] =
+  def obtenerTuplasOcurrencias(texto: List[Char]): List[(Char, Int)] =
     texto
       .map(char => (char, texto.count(otherChar => otherChar == char))) // para cada elemento mapea con sus ocurrencias
       .distinct                                                         // elimina repetidos
@@ -72,7 +72,7 @@ object Huffman {
     * @param ocurrencias
     * @return
     */
-  def generarListHojasOrdenadas(ocurrencias: List[(Char, Int)]) : List[NodoHoja] =
+  def generarListHojasOrdenadas(ocurrencias: List[(Char, Int)]): List[NodoHoja] =
     ocurrencias
       .sortWith((ocurr1, ocurr2) => ocurr1._2 < ocurr2._2)  // ordena de forma ascendente por peso
       .map(ocurr => NodoHoja(ocurr._1, ocurr._2))           // mapea el resultado en una lista de nodos hoja
@@ -83,7 +83,7 @@ object Huffman {
     * @param nodos
     * @return
     */
-  def singleton(nodos: List[Nodo]) : Boolean = nodos.size == 1  // comprueba que solo hay un nodo
+  def singleton(nodos: List[Nodo]): Boolean = nodos.size == 1  // comprueba que solo hay un nodo
 
   /**
     * Combina todos los nodos terminales
@@ -96,7 +96,7 @@ object Huffman {
     * @param nodos
     * @return
     */
-  def combinar(nodos: List[Nodo]) : List[Nodo] = {
+  def combinar(nodos: List[Nodo]): List[Nodo] = {
     (generarArbol(nodos.head, nodos.tail.head) :: nodos.tail.tail)            // inserta nodo intermedio al principio
       .sortWith((nodo1, nodo2) => calcularPeso(nodo1) < calcularPeso(nodo2))  // ordena la lista
   }
@@ -109,7 +109,7 @@ object Huffman {
     * @param nodos
     * @return
     */
-  def hasta(pred: List[Nodo] => Boolean, func: List[Nodo] => List[Nodo])(nodos: List[Nodo]) : List[Nodo] =
+  def hasta(pred: List[Nodo] => Boolean, func: List[Nodo] => List[Nodo])(nodos: List[Nodo]): List[Nodo] =
     if (pred(nodos)) nodos              // solo queda un elemento
     else hasta(pred, func)(func(nodos)) // llamada recursiva sobre la combinación en los nodos actuales
 
@@ -120,8 +120,8 @@ object Huffman {
     * @param texto
     * @return
     */
-  def codificar(arbol: Nodo, texto: List[Char]) : List[Int] = {
-    def codificar0(nodo: Nodo, texto: List[Char]) : List[Int] =
+  def codificar(arbol: Nodo, texto: List[Char]): List[Int] = {
+    def codificar0(nodo: Nodo, texto: List[Char]): List[Int] =
       nodo match {                                                                        // nodo actual
         case NodoHoja(_, _) =>                                                            // es nodo hoja
           if (texto.tail.isEmpty) List()                                                  // último caracter => criterio de parada
@@ -140,15 +140,15 @@ object Huffman {
     * @param textoCodificado
     * @return
     */
-  def decodificar(arbol: Nodo, textoCodificado: List[Int]) : List[Char] = {
-    def decodificar0(nodo: Nodo, textoCodificado: List[Int]) : List[Char] =
+  def decodificar(arbol: Nodo, textoCodificado: List[Int]): List[Char] = {
+    def decodificar0(nodo: Nodo, textoCodificado: List[Int]): List[Char] =
       nodo match {                                                                // nodo actual
         case NodoHoja(caracter, _) =>                                             // es nodo hoja
           if (textoCodificado.isEmpty) List(caracter)                             // último bit => criterio de parada
           else caracter :: decodificar0(arbol, textoCodificado)                   // no último bit => guarda el caracter y continúa
         case NodoIntermedio(izda, dcha, _, _) =>                                  // es nodo intermedio
           if (textoCodificado.head == 0) decodificar0(izda, textoCodificado.tail) // bit == 0 => recursividad por la izda con el resto de bits
-          else  decodificar0(dcha, textoCodificado.tail)                          // bit == 1 => recursividad por la dcha con el resto de bits
+          else decodificar0(dcha, textoCodificado.tail)                           // bit == 1 => recursividad por la dcha con el resto de bits
       }
     decodificar0(arbol, textoCodificado) // comienza desde la raiz con el texto codificado completo
   }
@@ -160,7 +160,7 @@ object Huffman {
     * @param caracter
     * @return
     */
-  def codificarConTabla(tabla: TablaCodigo)(caracter: Char) : List[Int] =
+  def codificarConTabla(tabla: TablaCodigo)(caracter: Char): List[Int] =
     tabla
       .filter(codigo => codigo._1 == caracter)  // filtra para buscar la entrada con el carácter
       .head._2                                  // devuelve el carácter encriptado
@@ -172,7 +172,7 @@ object Huffman {
     * @return
     */
   def convertirArbolTabla(arbol: Nodo) : TablaCodigo = {
-    def convertirArbolTabla0(nodo: Nodo, lista: List[Int]) : TablaCodigo = {
+    def convertirArbolTabla0(nodo: Nodo, lista: List[Int]): TablaCodigo = {
       nodo match {                                                                          // nodo actual
         case NodoHoja(caracter, _) => List((caracter, lista))                               // es nodo hoja => devuelve el caracter con la lista hasta llegar a él
         case NodoIntermedio(izda, dcha, _, _) =>                                            // es nodo intermedio => recursividad a izda y dcha agregando un 0 y 1
@@ -189,7 +189,7 @@ object Huffman {
     * @param texto
     * @return
     */
-  def codificacionRapida(arbol: Nodo)(texto: List[Char]) : List[Int] = {
+  def codificacionRapida(arbol: Nodo)(texto: List[Char]): List[Int] = {
     val tablaCodigo = convertirArbolTabla(arbol)                            // crea la tabla a partir del árbol
     (for(caracter <- texto) yield codificarConTabla(tablaCodigo)(caracter)) // obtiene lista para cada caracter del texto
       .flatten                                                              // convierte el List[List[Int]] a List[Int]

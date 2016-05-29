@@ -5,7 +5,7 @@ object Prueba extends App {
   import Huffman._
 
   /**
-    * Codigo Huffman para el lenguaje frances, obtenido a partir de la pagina
+    * Código Huffman para el lenguaje francés, obtenido a partir de la página
     * web http://fr.wikipedia.org/wiki/Fr%C3%A9quence_d%27apparition_des_lettres_en_fran%C3%A7ais
     */
   val codigoHuffmanFrances: Nodo = NodoIntermedio(
@@ -95,11 +95,52 @@ object Prueba extends App {
     */
   val mensajeDecodificado: List[Char] = decodificar(codigoHuffmanFrances, mensajeSecreto)
 
-  println(mensajeDecodificado)
+  println("Mensaje decodificado: " + mensajeDecodificado.mkString)
 
   // Se intenta lo mismo con la tabla
   val codificacionTabla = codificacionRapida(codigoHuffmanFrances)(mensajeDecodificado)
 
   // Debe ser igual a mensajeSecreto
-  println(mensajeSecreto == codificacionTabla)
+  println("Mensaje original == mensaje codificado: " + (mensajeSecreto == codificacionTabla))
+
+  /**
+    * ******************************************************************************************************************
+    */
+
+  /**
+    * Árbol original
+    */
+  val arbolOriginal = NodoIntermedio(
+    NodoHoja('a', 8),
+    NodoIntermedio(
+      NodoIntermedio(
+        NodoIntermedio(
+          NodoHoja('g', 1),
+          NodoHoja('h', 1),
+          List('g','h'), 2),
+        NodoIntermedio(
+          NodoHoja('e', 1),
+          NodoHoja('f', 1),
+          List('e','f'), 2),
+        List('g','h','e','f'), 4),
+      NodoIntermedio(
+        NodoIntermedio(
+          NodoHoja('c', 1),
+          NodoHoja('d', 1),
+          List('c', 'd'), 2),
+        NodoHoja('b', 3),
+        List('c','d','b'), 5),
+      List('g','h','e','f','c','d','b'), 9),
+    List('a','g','h','e','f','c','d','b'), 17)
+
+  /**
+    * Cadena con la que construir el árbol
+    */
+  val chars = stringAListaCaracteres("aaaaaaaabbbcdefgh")
+
+  // Árbol generado
+  val arbolGenerado = generarArbolCodificacion(chars)
+
+  // Debe ser igual a árbol original
+  println("Árbol original == Árbol generado: " + (arbolOriginal == arbolGenerado))
 }
