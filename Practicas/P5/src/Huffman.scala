@@ -119,7 +119,18 @@ object Huffman {
     * @param texto
     * @return
     */
-  def codificar(arbol: Nodo, texto: List[Char]) : List[Int] = ???
+  def codificar(arbol: Nodo, texto: List[Char]) : List[Int] = {
+    def codificar0(nodo: Nodo, texto: List[Char]) : List[Int] =
+      nodo match {                                                                        // Nodo actual
+        case NodoHoja(_, _) =>                                                            // Es Nodo Hoja
+          if (texto.tail.isEmpty) List()                                                  // último caracter => criterio de parada
+          else codificar0(arbol, texto.tail)                                              // no último caracter => continúa con el siguiente carácter
+        case NodoIntermedio(izda, dcha, caracteres, _) =>                                 // Es Nodo Intermedio
+          if (obtenerCaracteres(izda).contains(texto.head)) 0 :: codificar0(izda, texto)  // el carácter está a la izquierda => añade un 0
+          else 1 :: codificar0(dcha, texto)                                               // el carácter está a la derecha => añade un 1
+      }
+    codificar0(arbol, texto)  // comienza desde la raiz con el texto completo
+  }
 
   /**
     * Decodifica un texto siguiendo un código Huffman
@@ -131,7 +142,7 @@ object Huffman {
   def decodificar(arbol: Nodo, textoCodificado: List[Int]) : List[Char] = {
     def decodificar0(nodo: Nodo, textoCodificado: List[Int]) : List[Char] =
       nodo match {                                                                // Nodo actual
-        case NodoHoja(caracter, _) =>                                             // Es Nodo hoja
+        case NodoHoja(caracter, _) =>                                             // Es Nodo Hoja
           if (textoCodificado.isEmpty) List(caracter)                             // último bit => criterio de parada
           else caracter :: decodificar0(arbol, textoCodificado)                   // no último bit => guarda el caracter y continúa
         case NodoIntermedio(izda, dcha, _, _) =>                                  // Es Nodo Intermedio
