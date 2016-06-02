@@ -126,7 +126,7 @@ object Huffman {
         case NodoHoja(_, _) =>                                                            // es nodo hoja
           if (texto.tail.isEmpty) List()                                                  // último caracter => criterio de parada
           else codificar0(arbol, texto.tail)                                              // no último caracter => continúa con el siguiente carácter
-        case NodoIntermedio(izda, dcha, caracteres, _) =>                                 // es nodo intermedio
+        case NodoIntermedio(izda, dcha, _, _) =>                                          // es nodo intermedio
           if (obtenerCaracteres(izda).contains(texto.head)) 0 :: codificar0(izda, texto)  // el carácter está a la izquierda => añade un 0
           else 1 :: codificar0(dcha, texto)                                               // el carácter está a la derecha => añade un 1
       }
@@ -162,8 +162,8 @@ object Huffman {
     */
   def codificarConTabla(tabla: TablaCodigo)(caracter: Char): List[Int] =
     tabla
-      .filter(codigo => codigo._1 == caracter)  // filtra para buscar la entrada con el carácter
-      .head._2                                  // devuelve el carácter encriptado
+      .filter(entrada => entrada._1 == caracter)  // filtra para buscar la entrada con el carácter
+      .head._2                                    // devuelve el carácter encriptado
 
   /**
     * Crear tabla visitando el arbol de codificación
